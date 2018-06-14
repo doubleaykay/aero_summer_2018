@@ -1,4 +1,4 @@
-import digital_rf
+import digital_rf as drf
 import sys
 import os
 
@@ -9,7 +9,3 @@ filename = path.split("/")[4]
 date = filename.split("-")[0]
 UTstart = filename.split("-")[1]
 UTend = filename.split("-")[2]
-
-print(date)
-print(UTstart)
-print(UTend)
