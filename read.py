@@ -13,14 +13,16 @@ data = np.fromfile(file, type, count=80)
 #print(data[1+4])
 #print(data)
 
-
 def antenna(i):
     if(i<79):
         result = data[i]
         print(result)
         antenna(i+4)
+    #what do the following 3 lines do?
     else:
         result = 0
     return result
 
 antenna(1)
+
+#TODO make antenna() output a list of values; figure out what those 3 lines mean/do
