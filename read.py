@@ -9,4 +9,18 @@ file = sys.argv[1]
 type = np.dtype('u2')
 
 #read data
-print(np.fromfile(file, type, count=4))
+data = np.fromfile(file, type, count=80)
+#print(data[1+4])
+#print(data)
+
+
+def antenna(i):
+    if(i<79):
+        result = data[i]
+        print(result)
+        antenna(i+4)
+    else:
+        result = 0
+    return result
+
+antenna(1)
