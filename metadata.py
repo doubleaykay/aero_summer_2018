@@ -5,7 +5,7 @@ import datetime
 
 #get filename from command line argument
 path =  os.path.splitext(sys.argv[1])[0]
-filename = path.split("/")[4]
+filename = path.split("/")[5] #this is the part that is too specific... need to fix
 
 #get date and start/end times in human readable format from filename
 UTdate = filename.split("-")[0]
