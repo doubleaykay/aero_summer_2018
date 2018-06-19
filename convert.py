@@ -12,7 +12,7 @@ type = np.dtype('u2, u2, u2, u2')
 #prompt user for the antenna they wish to read
 antenna = "f" + str((input("What antenna (1-4) to read from? ") - 1))
 #prompt user for the number of chunks they want to read at a time
-chunks = input("What chunk size do you want to read at a time? ")
+#chunks = input("What chunk size do you want to read at a time? ")
 #get filename
 path =  os.path.splitext(file)[0]
 filename = path.split("/")[path.count('/')]
@@ -32,16 +32,26 @@ M = int(datetime.datetime.strptime(str(UTstart), '%H%M').strftime('%M'))
 sec_since_epoch = int((datetime.datetime(y,m,d,h,M) - datetime.datetime(1970,1,1)).total_seconds())
 samples_since_epoch = sec_since_epoch * 10000000
 
-#read data
-data = np.fromfile(file, type, count=chunks)
-#print(data[antenna])
+#read data in chunks
+def read_in_chunks(file_object, chunk_size=10000000):
+    while True:
+        data = file_object.read(chunk_size)
+        if not data:
+            break
+        yield data
 
+f = open(file, 'r')
+
+#create digital_rf writer object
 writer = drf.DigitalRFWriter(
-    '/media/anoush/DEB0D65EB0D63D29/_AERO/DRF_TEST_5', dtype=np.dtype('u2'),
+    '/media/anoush/DEB0D65EB0D63D29/_AERO/DRF_TEST', dtype=np.dtype('u2'),
     subdir_cadence_secs=3600, file_cadence_millisecs=1000,
     start_global_index=samples_since_epoch, sample_rate_numerator=10000000,
     sample_rate_denominator=1, is_complex=False
 )
 
-writer.rf_write(data[antenna])
+#pass chunks to writer object to be written
+for piece in read_in_chunks(f):
+    data = np.frombuffer(piece, type, count=-1)
+    writer.rf_write(data[antenna])
 writer.close()
