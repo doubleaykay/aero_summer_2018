@@ -6,23 +6,12 @@ import sys
 #filename from command line argument
 file = sys.argv[1]
 #define data type (u2 = 2byte (16bit) unsigned integer)
-type = np.dtype('u2')
+type = np.dtype('u2, u2, u2, u2')
+#prompt user for the antenna they wish to read
+antenna = "f" + str((input("What antenna (1 to 4) do you want to read from? ") - 1))
+#prompt user for the number of chunks they want to read at a time
+chunks = input("What chunk size do you want to read at a time? ")
 
 #read data
-data = np.fromfile(file, type, count=80)
-#print(data[1+4])
-#print(data)
-
-def antenna(i):
-    if(i<79):
-        result = data[i]
-        print(result)
-        antenna(i+4)
-    #what do the following 3 lines do?
-    else:
-        result = 0
-    return result
-
-antenna(1)
-
-#TODO make antenna() output a list of values; figure out what those 3 lines mean/do
+data = np.fromfile(file, type, count=chunks)
+print(data[antenna])
