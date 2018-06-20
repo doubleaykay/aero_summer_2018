@@ -19,6 +19,11 @@ except IndexError:
     print('Arguments required; use -h to see required arguments.')
     sys.exit()
 
+#check if output directory exists, if not, make it
+if not os.path.exists(args.output):
+    print('Output directory does not exist, making it now...')
+    os.makedirs(args.output)
+    print('Output directory created.')
 
 #parameters
 #path or filename from argparse
