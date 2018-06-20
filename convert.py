@@ -12,6 +12,14 @@ parser.add_argument("-o", "--output", help="location of directory to output to")
 parser.add_argument("-a", "--antenna", help="antenna number to read (1-4)")
 args = parser.parse_args()
 
+#ensure that arguments are passed
+try:
+    sys.argv[1]
+except IndexError:
+    print('Arguments required; use -h to see required arguments.')
+    sys.exit()
+
+
 #parameters
 #path or filename from argparse
 file = args.input
