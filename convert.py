@@ -71,8 +71,15 @@ writer = drf.DigitalRFWriter(
     sample_rate_denominator=1, is_complex=False
 )
 
+#get conversion start time
+conversion_start = datetime.datetime.now()
+
 #pass chunks to writer object to be written
 for piece in read_in_chunks(f):
     data = np.frombuffer(piece, type, count=-1)
     writer.rf_write(data[antenna])
 writer.close()
+
+#get conversion end time and calculate time delta
+conversion_end = datetime.datetime.now()
+print('Time elapsed:' + str(conversion_end - conversion_start))
