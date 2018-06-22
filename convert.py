@@ -54,7 +54,7 @@ sec_since_epoch = int((datetime.datetime(y,m,d,h,M) - datetime.datetime(1970,1,1
 samples_since_epoch = sec_since_epoch * 10000000
 
 #read data in chunks
-def read_in_chunks(file_object, chunk_size=10000000):
+def read_in_chunks(file_object, chunk_size=40000000):
     while True:
         data = file_object.read(chunk_size)
         if not data:
