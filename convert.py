@@ -3,6 +3,7 @@ import numpy as np
 import os
 import sys
 import datetime
+import dateutil.parser
 import argparse
 
 #get arguments from command line
@@ -38,19 +39,10 @@ antenna = "f" + str((int(args.antenna) - 1))
 path =  os.path.splitext(file)[0]
 filename = path.split("/")[path.count('/')]
 
-#get date and start/end times in human readable format from filename
-UTdate = filename.split("-")[0]
-UTstart = filename.split("-")[1]
-UTend = filename.split("-")[2]
-
-#convert human readable start date and time into seconds since UNIX epoch
-y = int(datetime.datetime.strptime(str(UTdate), '%Y%m%d').strftime('%Y'))
-m = int(datetime.datetime.strptime(str(UTdate), '%Y%m%d').strftime('%m'))
-d = int(datetime.datetime.strptime(str(UTdate), '%Y%m%d').strftime('%d'))
-h = int(datetime.datetime.strptime(str(UTstart), '%H%M').strftime('%H'))
-M = int(datetime.datetime.strptime(str(UTstart), '%H%M').strftime('%M'))
-
-sec_since_epoch = int((datetime.datetime(y,m,d,h,M) - datetime.datetime(1970,1,1)).total_seconds())
+#convert start date and time into seconds since UNIX epoch
+UTstart = dateutil.parser.parse(filename.split("-")[0] + filename.split("-")[1])
+epoch = dateutil.parser.parse('1970, 1, 1')
+sec_since_epoch = int((UTstart - epoch).total_seconds())
 samples_since_epoch = sec_since_epoch * 10000000
 
 #read data in chunks
