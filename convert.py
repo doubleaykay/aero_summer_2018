@@ -33,8 +33,6 @@ file = args.input
 type = np.dtype('u2, u2, u2, u2')
 #antenna number from argparse
 antenna = "f" + str((int(args.antenna) - 1))
-#prompt user for the number of chunks they want to read at a time
-#chunks = input("What chunk size do you want to read at a time? ")
 #get filename
 path =  os.path.splitext(file)[0]
 filename = path.split("/")[path.count('/')]
