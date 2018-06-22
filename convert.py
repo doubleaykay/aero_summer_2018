@@ -9,7 +9,10 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input", help="location of file to read from")
 parser.add_argument("-o", "--output", help="location of directory to output to")
-parser.add_argument("-a", "--antenna", help="antenna number to read (1-4)")
+parser.add_argument("-a", "--antenna", help="antenna number to read")
+parser.add_argument("-c", "--chunk", help="chunk size to read in bytes")
+parser.add_argument("-d", "--dtype", help="numpy data type")
+parser.add_argument("-r", "--rate", help="sample rate in Hz")
 args = parser.parse_args()
 
 #ensure that arguments are passed
@@ -29,11 +32,10 @@ if not os.path.exists(args.output):
 #path or filename from argparse
 file = args.input
 #define data type (u2 = 2byte (16bit) unsigned integer)
-type = np.dtype('u2, u2, u2, u2')
+#type = np.dtype('u2, u2, u2, u2')
+type = np.dtype(args.dtype)
 #antenna number from argparse
 antenna = "f" + str((int(args.antenna) - 1))
-#prompt user for the number of chunks they want to read at a time
-#chunks = input("What chunk size do you want to read at a time? ")
 #get filename
 path =  os.path.splitext(file)[0]
 filename = path.split("/")[path.count('/')]
@@ -54,7 +56,8 @@ sec_since_epoch = int((datetime.datetime(y,m,d,h,M) - datetime.datetime(1970,1,1
 samples_since_epoch = sec_since_epoch * 10000000
 
 #read data in chunks
-def read_in_chunks(file_object, chunk_size=10000000):
+#def read_in_chunks(file_object, chunk_size=40000000):
+def read_in_chunks(file_object, chunk_size=int(args.chunk)):
     while True:
         data = file_object.read(chunk_size)
         if not data:
@@ -67,8 +70,10 @@ f = open(file, 'r')
 writer = drf.DigitalRFWriter(
     args.output, dtype=np.dtype('u2'),
     subdir_cadence_secs=3600, file_cadence_millisecs=1000,
-    start_global_index=samples_since_epoch, sample_rate_numerator=10000000,
-    sample_rate_denominator=1, is_complex=False
+    #start_global_index=samples_since_epoch, sample_rate_numerator=10000000,
+    start_global_index=samples_since_epoch,
+    sample_rate_numerator=(int(args.rate)), sample_rate_denominator=1,
+    is_complex=False
 )
 
 #pass chunks to writer object to be written
