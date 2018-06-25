@@ -71,6 +71,12 @@ def read_in_chunks(file_object, chunk_size=int(args.chunk)):
 
 f = open(file, 'r')
 
+#confirm with user that all is fine before writing data
+try:
+    input("Does this look okay? If so, press enter to convert data.")
+except SyntaxError:
+    pass
+
 #create digital_rf writer object
 writer = drf.DigitalRFWriter(
     args.output, dtype=np.dtype('u2'),
