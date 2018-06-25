@@ -16,6 +16,14 @@ parser.add_argument("-r", "--rate", help="sample rate in Hz")
 parser.add_argument("-v", "--verbose", help="print status messages")
 args = parser.parse_args()
 
+if args.verbose:
+    print('Input: ' args.input)
+    print('Output: ' args.output)
+    print('Antenna: ' args.antenna)
+    print('Chunk Size: ' args.chunk)
+    print('Data Type: ' args.dtype)
+    print('Sample Rate in Hz: ' args.rate)
+
 #ensure that arguments are passed
 try:
     sys.argv[1]
@@ -57,8 +65,8 @@ sec_since_epoch = int((datetime.datetime(y,m,d,h,M) - datetime.datetime(1970,1,1
 samples_since_epoch = sec_since_epoch * 10000000
 
 if args.verbose:
-    print('Seconds since epoch:' + str(sec_since_epoch))
-    print('Samples since epoch:' + str(samples_since_epoch))
+    print('Seconds since epoch: ' + str(sec_since_epoch))
+    print('Samples since epoch: ' + str(samples_since_epoch))
 
 #read data in chunks
 #def read_in_chunks(file_object, chunk_size=40000000):
