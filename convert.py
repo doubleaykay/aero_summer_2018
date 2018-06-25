@@ -13,6 +13,7 @@ parser.add_argument("-a", "--antenna", help="antenna number to read")
 parser.add_argument("-c", "--chunk", help="chunk size to read in bytes")
 parser.add_argument("-d", "--dtype", help="numpy data type")
 parser.add_argument("-r", "--rate", help="sample rate in Hz")
+parser.add_argument("-v", "--verbose", help="print status messages")
 args = parser.parse_args()
 
 #ensure that arguments are passed
@@ -54,6 +55,10 @@ M = int(datetime.datetime.strptime(str(UTstart), '%H%M').strftime('%M'))
 
 sec_since_epoch = int((datetime.datetime(y,m,d,h,M) - datetime.datetime(1970,1,1)).total_seconds())
 samples_since_epoch = sec_since_epoch * 10000000
+
+if args.verbose:
+    print('Seconds since epoch:' + str(sec_since_epoch))
+    print('Samples since epoch:' + str(samples_since_epoch))
 
 #read data in chunks
 #def read_in_chunks(file_object, chunk_size=40000000):
