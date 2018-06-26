@@ -203,7 +203,7 @@ class DataPlotter(object):
                 vmax = numpy.real(numpy.median(
                     Pss) + (numpy.max(Pss) - numpy.median(Pss)) * 0.61803398875 + 50.0)
 
-            im = ax.imshow(sti_psd_data, cmap='jet', origin='lower', extent=extent,
+            im = ax.imshow(sti_psd_data, cmap=self.control.colormap, origin='lower', extent=extent,
                            interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
 
             ax.set_ylabel('f (Hz)', fontsize=8)
@@ -333,6 +333,8 @@ def parse_command_line(str_input=None):
                       default=False, help="Makes the plot appear through pyplot show.")
     parser.add_option("-y", "--yaxis", action="store_true", dest="appear",
                       default=False, help="y axis range e.g. -10000:10000")
+    parser.add_option("-c", "--colormap", action="store_true", dest="appear",
+                      default="jet", help="define colormap")
     if str_input is None:
         (options, args) = parser.parse_args()
     else:
