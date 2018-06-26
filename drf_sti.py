@@ -206,7 +206,7 @@ class DataPlotter(object):
             im = ax.imshow(sti_psd_data, cmap='jet', origin='lower', extent=extent,
                            interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
 
-            ax.set_ylabel('f (kHz)', fontsize=8)
+            ax.set_ylabel('f (Hz)', fontsize=8)
 
             # plot dates
 
