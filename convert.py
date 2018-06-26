@@ -60,7 +60,7 @@ if args.verbose:
 UTstart = dateutil.parser.parse(filename.split("-")[0] + filename.split("-")[1])
 epoch = dateutil.parser.parse('1970, 1, 1')
 sec_since_epoch = int((UTstart - epoch).total_seconds())
-samples_since_epoch = sec_since_epoch * 10000000
+samples_since_epoch = sec_since_epoch * int(args.rate)
 
 if args.verbose:
     print('UTStart: ' + str(UTstart))
