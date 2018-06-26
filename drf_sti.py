@@ -331,9 +331,9 @@ def parse_command_line(str_input=None):
                       type=str, help="Name of file that figure will be saved under.")
     parser.add_option("-a", "--appear", action="store_true", dest="appear",
                       default=False, help="Makes the plot appear through pyplot show.")
-    parser.add_option("-y", "--yaxis", action="store_true", dest="appear",
+    parser.add_option("-y", "--yaxis", dest="yaxis",
                       default=False, help="y axis range e.g. -10000:10000")
-    parser.add_option("-c", "--colormap", action="store_true", dest="appear",
+    parser.add_option("--colormap", dest="colormap",
                       default="jet", help="define colormap")
     if str_input is None:
         (options, args) = parser.parse_args()
