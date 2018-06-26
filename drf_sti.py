@@ -155,7 +155,7 @@ class DataPlotter(object):
                 data = self.dio.read_vector(
                     start_sample, samples_per_stripe, self.channel, self.sub_channel)
                 if self.control.decimation > 1:
-                    data = scipy.signal.decimate(data, self.control.decimation)
+                    data = scipy.signal.decimate(data, self.control.decimation, ftype='fir')
                     sample_freq = sr / self.control.decimation
                 else:
                     sample_freq = sr
