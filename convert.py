@@ -18,12 +18,12 @@ parser.add_argument("-v", "--verbose", help="print status messages")
 args = parser.parse_args()
 
 if args.verbose:
-    print('Input: ' args.input)
-    print('Output: ' args.output)
-    print('Antenna: ' args.antenna)
-    print('Chunk Size: ' args.chunk)
-    print('Data Type: ' args.dtype)
-    print('Sample Rate in Hz: ' args.rate)
+    print('Input: ' + args.input)
+    print('Output: ' + args.output)
+    print('Antenna: ' + args.antenna)
+    print('Chunk Size: ' + args.chunk)
+    print('Data Type: ' + args.dtype)
+    print('Sample Rate in Hz: ' + args.rate)
 
 #ensure that arguments are passed
 try:
@@ -34,9 +34,11 @@ except IndexError:
 
 #check if output directory exists, if not, make it
 if not os.path.exists(args.output):
-    print('Output directory does not exist, making it now...')
+    if args.verbose:
+        print('Output directory does not exist, making it now...')
     os.makedirs(args.output)
-    print('Output directory created.')
+    if args.verbose:
+        print('Output directory created.')
 
 #parameters
 #path or filename from argparse
@@ -50,6 +52,10 @@ antenna = "f" + str((int(args.antenna) - 1))
 path =  os.path.splitext(file)[0]
 filename = path.split("/")[path.count('/')]
 
+if args.verbose:
+    print('Path: ' + path)
+    print('Filename: ' + filename)
+
 #convert start date and time into seconds since UNIX epoch
 UTstart = dateutil.parser.parse(filename.split("-")[0] + filename.split("-")[1])
 epoch = dateutil.parser.parse('1970, 1, 1')
@@ -57,6 +63,8 @@ sec_since_epoch = int((UTstart - epoch).total_seconds())
 samples_since_epoch = sec_since_epoch * 10000000
 
 if args.verbose:
+    print('UTStart: ' + str(UTstart))
+    print('Epoch: ' + str(epoch))
     print('Seconds since epoch: ' + str(sec_since_epoch))
     print('Samples since epoch: ' + str(samples_since_epoch))
 
@@ -88,6 +96,8 @@ writer = drf.DigitalRFWriter(
 
 #get conversion start time
 conversion_start = datetime.datetime.now()
+if args.verbose:
+    print('Conversion start time: ' + conversion_start)
 
 #pass chunks to writer object to be written
 for piece in read_in_chunks(f):
@@ -97,4 +107,7 @@ writer.close()
 
 #get conversion end time and calculate time delta
 conversion_end = datetime.datetime.now()
+
+if args.verbose:
+    print('Conversion end time: ' + conversion_end)
 print('Time elapsed:' + str(conversion_end - conversion_start))
