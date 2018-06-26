@@ -3,6 +3,7 @@ import numpy as np
 import os
 import sys
 import datetime
+import dateutil.parser
 import argparse
 
 #get arguments from command line
@@ -49,19 +50,10 @@ antenna = "f" + str((int(args.antenna) - 1))
 path =  os.path.splitext(file)[0]
 filename = path.split("/")[path.count('/')]
 
-#get date and start/end times in human readable format from filename
-UTdate = filename.split("-")[0]
-UTstart = filename.split("-")[1]
-UTend = filename.split("-")[2]
-
-#convert human readable start date and time into seconds since UNIX epoch
-y = int(datetime.datetime.strptime(str(UTdate), '%Y%m%d').strftime('%Y'))
-m = int(datetime.datetime.strptime(str(UTdate), '%Y%m%d').strftime('%m'))
-d = int(datetime.datetime.strptime(str(UTdate), '%Y%m%d').strftime('%d'))
-h = int(datetime.datetime.strptime(str(UTstart), '%H%M').strftime('%H'))
-M = int(datetime.datetime.strptime(str(UTstart), '%H%M').strftime('%M'))
-
-sec_since_epoch = int((datetime.datetime(y,m,d,h,M) - datetime.datetime(1970,1,1)).total_seconds())
+#convert start date and time into seconds since UNIX epoch
+UTstart = dateutil.parser.parse(filename.split("-")[0] + filename.split("-")[1])
+epoch = dateutil.parser.parse('1970, 1, 1')
+sec_since_epoch = int((UTstart - epoch).total_seconds())
 samples_since_epoch = sec_since_epoch * 10000000
 
 if args.verbose:
@@ -69,7 +61,6 @@ if args.verbose:
     print('Samples since epoch: ' + str(samples_since_epoch))
 
 #read data in chunks
-#def read_in_chunks(file_object, chunk_size=40000000):
 def read_in_chunks(file_object, chunk_size=int(args.chunk)):
     while True:
         data = file_object.read(chunk_size)
@@ -95,8 +86,15 @@ writer = drf.DigitalRFWriter(
     is_complex=False
 )
 
+#get conversion start time
+conversion_start = datetime.datetime.now()
+
 #pass chunks to writer object to be written
 for piece in read_in_chunks(f):
     data = np.frombuffer(piece, type, count=-1)
     writer.rf_write(data[antenna])
 writer.close()
+
+#get conversion end time and calculate time delta
+conversion_end = datetime.datetime.now()
+print('Time elapsed:' + str(conversion_end - conversion_start))
