@@ -80,7 +80,7 @@ f = open(file, 'r')
 
 #confirm with user that all is fine before writing data
 try:
-    input("Does this look okay? If so, press enter to convert data.")
+    input("Press enter to convert data.")
 except SyntaxError:
     pass
 
