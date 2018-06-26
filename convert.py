@@ -97,7 +97,7 @@ writer = drf.DigitalRFWriter(
 #get conversion start time
 conversion_start = datetime.datetime.now()
 if args.verbose:
-    print('Conversion start time: ' + conversion_start)
+    print('Conversion start time: ' + str(conversion_start))
 
 #pass chunks to writer object to be written
 for piece in read_in_chunks(f):
@@ -109,5 +109,5 @@ writer.close()
 conversion_end = datetime.datetime.now()
 
 if args.verbose:
-    print('Conversion end time: ' + conversion_end)
+    print('Conversion end time: ' + str(conversion_end))
 print('Time elapsed:' + str(conversion_end - conversion_start))
