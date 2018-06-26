@@ -208,8 +208,13 @@ class DataPlotter(object):
 
             ax.set_ylabel('f (Hz)', fontsize=8)
 
-            # plot dates
+            #set custom y axis range
+            if self.control.yaxis:
+                ymin = int(string.split(self.control.yaxis, ':')[0])
+                ymax = int(string.split(self.control.yaxis, ':')[1])
+                ax.set_ylim(ymin,ymax)
 
+            # plot dates
             tick_spacing = numpy.arange(
                 self.control.bins / 8, self.control.bins, self.control.bins / 8)
             ax.set_xticks(tick_spacing)
@@ -326,6 +331,8 @@ def parse_command_line(str_input=None):
                       type=str, help="Name of file that figure will be saved under.")
     parser.add_option("-a", "--appear", action="store_true", dest="appear",
                       default=False, help="Makes the plot appear through pyplot show.")
+    parser.add_option("-y", "--yaxis", action="store_true", dest="appear",
+                      default=False, help="y axis range e.g. -10000:10000")
     if str_input is None:
         (options, args) = parser.parse_args()
     else:
