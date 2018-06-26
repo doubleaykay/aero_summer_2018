@@ -14,7 +14,8 @@ parser.add_argument("-a", "--antenna", help="antenna number to read")
 parser.add_argument("-c", "--chunk", help="chunk size to read in bytes")
 parser.add_argument("-d", "--dtype", help="numpy data type")
 parser.add_argument("-r", "--rate", help="sample rate in Hz")
-parser.add_argument("-v", "--verbose", help="print status messages")
+parser.add_argument("-v", "--verbose", action="store_true", dest="verbose",
+                  default=False, help="Print status messages to stdout.")
 args = parser.parse_args()
 
 if args.verbose:
