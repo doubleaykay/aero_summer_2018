@@ -6,6 +6,8 @@ import datetime
 import dateutil.parser
 import argparse
 
+"""Convert LaBelle Group data to digital_rf by reading antennas as channels"""
+
 #get arguments from command line
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input", help="location of file to read from")
