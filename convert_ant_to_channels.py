@@ -23,7 +23,7 @@ args = parser.parse_args()
 if args.verbose:
     print('Input: ' + args.input)
     print('Output: ' + args.output)
-    print('Antenna: ' + args.antenna)
+    print('Antennas: ' + args.antennas)
     print('Chunk Size: ' + args.chunk)
     print('Data Type: ' + args.dtype)
     print('Sample Rate in Hz: ' + args.rate)
@@ -40,16 +40,17 @@ if not os.path.exists(args.output):
     if args.verbose:
         print('Output directory does not exist, making it now...')
     os.makedirs(args.output)
-    if args.verbose:
-        print('Output directory created.')
 
 #make directories to match number of antennas
-number_of_antennas = int(args.antenna)
+number_of_antennas = int(args.antennas)
 i = 0
 while i <= (number_of_antennas - 1):
     dir = (args.output + "/ant" + str(i))
-    os.makedirs(dir)
+    if not os.path.exists(dir):
+        os.makedirs(dir)
     i += 1
+if args.verbose:
+    print('Output directories created.')
 
 #parameters
 #path or filename from argparse
@@ -91,25 +92,38 @@ try:
 except SyntaxError:
     pass
 
-#create digital_rf writer object
-writer = drf.DigitalRFWriter(
-    args.output, dtype=np.dtype('u2'),
-    subdir_cadence_secs=3600, file_cadence_millisecs=1000,
-    start_global_index=samples_since_epoch,
-    sample_rate_numerator=(int(args.rate)), sample_rate_denominator=1,
-    is_complex=False
-)
-
 #get conversion start time
 conversion_start = datetime.datetime.now()
 if args.verbose:
     print('Conversion start time: ' + str(conversion_start))
 
-#pass chunks to writer object to be written
-for piece in read_in_chunks(f):
-    data = np.frombuffer(piece, type, count=-1)
-    writer.rf_write(data[antenna])
-writer.close()
+#loop through number of antennas to write each to a channel
+b = 0
+while b <= (number_of_antennas - 1):
+    #define directory to write to
+    dir = (args.output + "/ant" + str(b))
+
+    #create digital_rf writer object
+    writer = drf.DigitalRFWriter(
+        dir, dtype=np.dtype('u2'),
+        subdir_cadence_secs=3600, file_cadence_millisecs=1000,
+        start_global_index=samples_since_epoch,
+        sample_rate_numerator=(int(args.rate)), sample_rate_denominator=1,
+        is_complex=False
+    )
+
+    #status messages if verbose flag enabled
+    if args.verbose:
+        print("Working directory: " + dir)
+        print("Writing data for antenna " + str(b + 1))
+
+    #pass chunks to writer object to be written
+    for piece in read_in_chunks(f):
+        data = np.frombuffer(piece, type, count=-1)
+        writer.rf_write(data[("f" + str(b))])
+    writer.close()
+
+    b += 1
 
 #get conversion end time and calculate time delta
 conversion_end = datetime.datetime.now()
