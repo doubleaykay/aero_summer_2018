@@ -12,7 +12,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input", help="location of file to read from")
 parser.add_argument("-o", "--output", help="location of directory to output to")
-parser.add_argument("-a", "--antenna", help="antenna number to read")
+parser.add_argument("-a", "--antennas", help="number of antennas in data")
 parser.add_argument("-c", "--chunk", help="chunk size to read in bytes")
 parser.add_argument("-d", "--dtype", help="numpy data type")
 parser.add_argument("-r", "--rate", help="sample rate in Hz")
@@ -35,7 +35,7 @@ except IndexError:
     print('Arguments required; use -h to see required arguments.')
     sys.exit()
 
-#check if output directory exists, if not, make it
+#check if top level output directory exists, if not, make it
 if not os.path.exists(args.output):
     if args.verbose:
         print('Output directory does not exist, making it now...')
@@ -43,13 +43,19 @@ if not os.path.exists(args.output):
     if args.verbose:
         print('Output directory created.')
 
+#make directories to match number of antennas
+number_of_antennas = int(args.antenna)
+i = 0
+while i <= (number_of_antennas - 1):
+    dir = (args.output + "/ant" + str(i))
+    os.makedirs(dir)
+    i += 1
+
 #parameters
 #path or filename from argparse
 file = args.input
 #define data type (u2 = 2byte (16bit) unsigned integer)
 type = np.dtype(args.dtype)
-#antenna number from argparse
-antenna = "f" + str((int(args.antenna) - 1))
 #get filename
 path =  os.path.splitext(file)[0]
 filename = path.split("/")[path.count('/')]
