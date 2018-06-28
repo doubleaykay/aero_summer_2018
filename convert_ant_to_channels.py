@@ -77,15 +77,6 @@ if args.verbose:
     print('Seconds since epoch: ' + str(sec_since_epoch))
     print('Samples since epoch: ' + str(samples_since_epoch))
 
-#read data in chunks
-def read_in_chunks(file_object, chunk_size=int(args.chunk)):
-    while True:
-        data = file_object.read(chunk_size)
-        if not data:
-            break
-        yield data
-f = open(file, 'r')
-
 #confirm with user that all is fine before writing data
 try:
     input("Press enter to convert data.")
@@ -100,6 +91,15 @@ if args.verbose:
 #loop through number of antennas to write each to a channel
 b = 0
 while b <= (number_of_antennas - 1):
+    #read data in chunks
+    def read_in_chunks(file_object, chunk_size=int(args.chunk)):
+        while True:
+            data = file_object.read(chunk_size)
+            if not data:
+                break
+            yield data
+    f = open(file, 'r')
+
     #define directory to write to
     dir = (args.output + "/ant" + str(b))
 
@@ -121,6 +121,8 @@ while b <= (number_of_antennas - 1):
     for piece in read_in_chunks(f):
         data = np.frombuffer(piece, type, count=-1)
         writer.rf_write(data[("f" + str(b))])
+
+    f.close()
     writer.close()
 
     b += 1
