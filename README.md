@@ -65,5 +65,5 @@ Command Line Arguments:
 -v, --verbose         Print status messages to stdout.
 ```
 
-* Output directory must be in the format "./{data_name}" as channel names (ant#) as automatically determind from the number of antennas specified.
+* Output directory must be in the format ```./{data_name}``` as channel names (ant#) as automatically determind from the number of antennas specified.
 * The total user-facing number of antennas must be specified.
