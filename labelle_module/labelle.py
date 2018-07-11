@@ -12,8 +12,7 @@ def get_filename(path):
     return filename
 
 def get_epoch(filename):
-    """Get seconds since epoch from provided filename, assuming standard LaBelle
-    file naming scheme. Provide filename (not path) as string."""
+    """Get seconds since epoch from provided filename, assuming standard LaBelle file naming scheme. Provide filename (not path) as string."""
     UTstart = dateutil.parser.parse(filename.split("-")[0] + filename.split("-")[1])
     epoch = dateutil.parser.parse('1970, 1, 1')
     sec_since_epoch = int((UTstart - epoch).total_seconds())
