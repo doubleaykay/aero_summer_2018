@@ -17,3 +17,8 @@ def get_epoch(filename):
     epoch = dateutil.parser.parse('1970, 1, 1')
     sec_since_epoch = int((UTstart - epoch).total_seconds())
     return sec_since_epoch
+
+def construct_dtype(antennas):
+    """Construct numpy data type based on number of antennas in file. LaBelle data files are 16bit unsigned integers, which are represented by 'u2' in numpy. Provide number of antennas as an int argument."""
+    type = ('u2,' * int(antennas))[:-1]
+    return type
