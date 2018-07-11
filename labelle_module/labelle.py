@@ -4,9 +4,8 @@ import dateutil.parser
 
 """Python module for working with LaBelle group data files."""
 
-def get_filename(path):
+def get_filename(file):
     """Parse provided path to get filename. Provide path as string argument."""
-    file = path
     path =  os.path.splitext(file)[0]
     filename = path.split("/")[path.count('/')]
     return filename
