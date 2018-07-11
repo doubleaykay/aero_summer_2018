@@ -1,8 +1,8 @@
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
 # labelle_to_dRF
 Import LaBelle group RF binary data into MIT Haystack digital_rf container format.
 Done for early stages of AERO satellite project.
-
-[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
 ## What does this do?
 LaBelle group data consists of multiple-GB binary files, containing 2 or 4 channels of 2 byte integers. Data start and end time metadata is stored in the filename, and sample rate is stored in LaBelle notes.
