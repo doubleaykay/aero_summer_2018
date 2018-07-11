@@ -21,3 +21,20 @@ def construct_dtype(antennas):
     """Construct numpy data type based on number of antennas in file. LaBelle data files are 16bit unsigned integers, which are represented by 'u2' in numpy. Provide number of antennas as an int argument."""
     type = ('u2,' * int(antennas))[:-1]
     return type
+
+def make_dirs(out_path, antennas):
+    """Make appropriate antenna directories. Specify output dir as string, and number of antennas as int."""
+    #check if output directory exists
+    if not os.path.exists(out_path):
+        print('Output directory does not exist, making it now...')
+        os.makedirs(out_path)
+
+    #make directories to match number of antennas
+    number_of_antennas = int(antennas)
+    i = 0
+    while i <= (number_of_antennas - 1):
+        dir = (out_path + "/ant" + str(i))
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        i += 1
+    print('Output directories created.')
