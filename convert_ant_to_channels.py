@@ -14,7 +14,6 @@ parser.add_argument("-i", "--input", help="location of file to read from")
 parser.add_argument("-o", "--output", help="location of directory to output to")
 parser.add_argument("-a", "--antennas", help="number of antennas in data")
 parser.add_argument("-c", "--chunk", help="chunk size to read in bytes")
-parser.add_argument("-d", "--dtype", help="numpy data type")
 parser.add_argument("-r", "--rate", help="sample rate in Hz")
 parser.add_argument("-v", "--verbose", action="store_true", dest="verbose",
                   default=False, help="Print status messages to stdout.")
@@ -25,7 +24,6 @@ if args.verbose:
     print('Output: ' + args.output)
     print('Antennas: ' + args.antennas)
     print('Chunk Size: ' + args.chunk)
-    print('Data Type: ' + args.dtype)
     print('Sample Rate in Hz: ' + args.rate)
 
 #ensure that arguments are passed
@@ -56,12 +54,13 @@ if args.verbose:
 #path or filename from argparse
 file = args.input
 #define data type (u2 = 2byte (16bit) unsigned integer)
-type = np.dtype(args.dtype)
+type = ('u2,' * int(args.antennas))[:-1]
 #get filename
 path =  os.path.splitext(file)[0]
 filename = path.split("/")[path.count('/')]
 
 if args.verbose:
+    print('Data Type: ' + type)
     print('Path: ' + path)
     print('Filename: ' + filename)
 
