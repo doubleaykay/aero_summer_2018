@@ -41,7 +41,7 @@ def make_dirs(out_path, antennas):
     print('Output directories created.')
 
 def get_dat(dir):
-    """Return list of all .dat LaBelle data files in given directory. Privide directory as string."""
+    """Return list of all .dat LaBelle data files in given directory. Provide directory as string."""
     os.chdir(dir)
     all_dat = []
     for file in glob.glob("*.dat"):
