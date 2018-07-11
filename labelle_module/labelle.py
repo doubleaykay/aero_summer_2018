@@ -1,6 +1,7 @@
 import os
 import datetime
 import dateutil.parser
+import glob
 
 """Python module for working with LaBelle group data files."""
 
@@ -38,3 +39,11 @@ def make_dirs(out_path, antennas):
             os.makedirs(dir)
         i += 1
     print('Output directories created.')
+
+def get_dat(dir):
+    """Return list of all .dat LaBelle data files in given directory. Privide directory as string."""
+    os.chdir(dir)
+    all_dat = []
+    for file in glob.glob("*.dat"):
+        all_dat.append(file)
+    return all_dat
