@@ -2,7 +2,7 @@ import os
 import datetime
 import dateutil.parser
 
-"""Python module for working with LaBelle group data files"""
+"""Python module for working with LaBelle group data files."""
 
 def get_filename(path):
     """Parse provided path to get filename. Provide path as string argument."""
