@@ -1,7 +1,7 @@
-import os
-import datetime
-import dateutil.parser
-import glob
+import os as _os
+import datetime as _datetime
+from dateutil import parser as _parser
+import glob as _glob
 
 """Python module for working with LaBelle group data files."""
 
@@ -13,8 +13,8 @@ def get_filename(file):
 
 def get_epoch(filename):
     """Get seconds since epoch from provided filename, assuming standard LaBelle file naming scheme. Provide filename (not path) as string."""
-    UTstart = dateutil.parser.parse(filename.split("-")[0] + filename.split("-")[1])
-    epoch = dateutil.parser.parse('1970, 1, 1')
+    UTstart = parser.parse(filename.split("-")[0] + filename.split("-")[1])
+    epoch = parser.parse('1970, 1, 1')
     sec_since_epoch = int((UTstart - epoch).total_seconds())
     return sec_since_epoch
 
