@@ -19,5 +19,9 @@ bounds = reader.get_bounds(channels[0])
 data = reader.read_vector(bounds[0], 128, channels[0])
 print(data)
 
+#perform FFT on data
+data_fft = np.fft.fft(data)
+print(data_fft)
+
 #close digital_rf reader (once everything is done)
 reader.close()
