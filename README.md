@@ -1,4 +1,4 @@
-[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Python 2.7.15](https://img.shields.io/badge/python-2.7.15-blue.svg)](https://www.python.org/downloads/release/python-2715/)
 
 # labelle_to_dRF
 Import LaBelle group RF binary data into MIT Haystack digital_rf container format.
