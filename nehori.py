@@ -7,7 +7,7 @@ import math
 
 def equation_22(fft, freq):
     """Equations 2.2 include a relationship between 'E' and 'H', the 'vector-phasor' representations of E and B fields.
-    This function attempts to leverage that relationship to return a B field computed from the provided FFT of an E field.
+    This function attempts to leverage that relationship to return an FFT-output-like B field array computed from the provided FFT of an E field.
     Pass in the unmodified array FFT output, as well as the linear frequency of the data as an integer"""
 
     direction = [x, y, z] #PLACEHOLDER NEEDS TO BE CORRECT AND PASSED IN direction vector from sensor to source of measurement
