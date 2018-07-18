@@ -5,7 +5,7 @@ import math
 
 """Sample Implementations of Equations from Nehori (1994)"""
 
-def function_22(fft, freq):
+def equation_22(fft, freq):
     """Equations 2.2 include a relationship between 'E' and 'H', the 'vector-phasor' representations of E and B fields.
     This function attempts to leverage that relationship to return a B field computed from the provided FFT of an E field.
     Pass in the unmodified array FFT output, as well as the linear frequency of the data as an integer"""
