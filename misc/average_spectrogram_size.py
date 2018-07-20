@@ -3,6 +3,12 @@ import statistics as _stat
 
 def list_files_in_dir(root_dir):
     """Return a list of all file paths within a directory, including files in subdirectories. Pass in directory path as string."""
+    a = []
+    for root, dirs, files in os.walk(root_dir):
+        for file in files:
+            p=os.path.join(root,file)
+            a.append(os.path.abspath(p))
+    return a
 
 def average_file_size(file_list):
     """Return average file size in bytes of numerous files. Pass in file paths as a list."""
