@@ -1,5 +1,5 @@
-import os as _os
-import statistics as _stat
+import os as os
+import statistics as stat
 
 #functions for working with files -- will make into a python module one day
 def list_files_in_dir(root_dir):
@@ -16,7 +16,7 @@ def average_file_size(file_list):
     file_size_list = []
     i = 0
     while i <= len(file_list) - 1:
-        file_size_list.append(os.getsize(file_list[i]))
+        file_size_list.append(os.path.getsize(file_list[i]))
         i += 1
     average = stat.mean(file_size_list)
     return average
@@ -26,9 +26,11 @@ def median_file_size(file_list):
     file_size_list = []
     i = 0
     while i <= len(file_list) - 1:
-        file_size_list.append(os.getsize(file_list[i]))
+        file_size_list.append(os.path.getsize(file_list[i]))
         i += 1
     median = stat.median(file_size_list)
     return median
 
 #begin program
+path = '/home/anoush/Desktop/working/average_plot_size/'
+print(average_file_size(list_files_in_dir(path)))
