@@ -1,6 +1,7 @@
 import os as _os
 import statistics as _stat
 
+#functions for working with files -- will make into a python module one day
 def list_files_in_dir(root_dir):
     """Return a list of all file paths within a directory, including files in subdirectories. Pass in directory path as string."""
     a = []
@@ -29,3 +30,5 @@ def median_file_size(file_list):
         i += 1
     median = stat.median(file_size_list)
     return median
+
+#begin program
