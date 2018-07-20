@@ -34,3 +34,4 @@ def median_file_size(file_list):
 #begin program
 path = '/home/anoush/Desktop/working/average_plot_size/'
 print(average_file_size(list_files_in_dir(path)))
+print(median_file_size(list_files_in_dir(path)))
