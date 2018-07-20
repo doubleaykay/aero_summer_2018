@@ -11,7 +11,7 @@ def average_file_size(file_list):
     while i <= len(file_list) - 1:
         file_size_list.append(os.getsize(file_list[i]))
         i += 1
-    average = (sum(file_size_list) / len(file_size_list))
+    average = stat.mean(file_size_list)
     return average
 
 def median_file_size(file_list):
