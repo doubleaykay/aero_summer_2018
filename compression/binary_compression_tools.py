@@ -11,7 +11,7 @@ def read_txt_into_array(path):
     return data
 
 #the above function is better done as the following:
-data = np.fromtxt('/home/anoush/Desktop/working/psd.txt')
+data = np.loadtxt('/home/anoush/Desktop/working/psd.txt')
 
 #begin test program
 # path_to_psd_data = '/home/anoush/Desktop/working/psd.txt'
