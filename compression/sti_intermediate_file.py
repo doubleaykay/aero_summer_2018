@@ -32,6 +32,8 @@ path_freq_txt = path_to_output + '/freq.txt'
 path_freq_bin = path_to_output + '/freq'
 path_vars = path_to_output + '/vars'
 
+file_vars = open(path_vars, 'rw+')
+
 # open digital RF path
 dio = drf.DigitalRFReader(path)
 
@@ -108,4 +110,5 @@ freq.tofile(path_freq_txt, '\n')
 
 #save variables to file
 vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt]
-pickle.dump(vars, path_vars)
+pickle.dump(vars, file_vars)
+file_vars.close()
