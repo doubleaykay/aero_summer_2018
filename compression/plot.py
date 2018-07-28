@@ -21,8 +21,11 @@ import pickle
 
 dir = '/home/anoush/Desktop/working/intermediate_test'
 dir_plot = dir + '/plot.png'
+path_vars = dir + '/vars'
 #load vars from intermediate file processing script via pickle
-bins, st0, sr, path, path_psd_txt, path_freq_txt = pickle.load(dir + '/vars')
+file_vars = open(path_vars, 'r')
+bins, st0, sr, path, path_psd_txt, path_freq_txt = pickle.load(file_vars)
+file_vars.close()
 
 #other vars
 title = 'Digital RF Data'
@@ -66,7 +69,7 @@ for p in numpy.arange(1):
     vmin = numpy.real(numpy.percentile(Pss, 5))
     vmax = numpy.real(numpy.percentile(Pss, 95))
 
-    im = ax.imshow(sti_psd_data, cmap=gray, origin='lower', extent=extent, interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
+    im = ax.imshow(sti_psd_data, cmap='gray', origin='lower', extent=extent, interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
 
     ax.set_ylabel('f (Hz)', fontsize=8)
 
