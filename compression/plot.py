@@ -71,8 +71,8 @@ for p in numpy.arange(1):
     ax.set_ylabel('f (Hz)', fontsize=8)
 
     #set y axis range
-    ymin =
-    ymax =
+    ymin = 0
+    ymax = 5000
 
     # plot dates
     tick_spacing = numpy.arange(bins / 8, bins, bins / 8)
