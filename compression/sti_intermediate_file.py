@@ -10,6 +10,8 @@ import numpy.fft
 import scipy
 import scipy.signal
 
+import pickle
+
 """Generate processed intermediate file that can be used to generate a spectral time intensity plot.
 Intermediate file is as compressed as possible. Data processing is based on the method from the MIT Haystack digital_rf drf.sti.py tool,
 so everything is written to be as similar to drf_sti.py as possible. It has been simplified for the purposes of AERO."""
@@ -28,6 +30,7 @@ path_psd_txt = path_to_output + '/psd.txt'
 path_psd_bin = path_to_output + '/psd'
 path_freq_txt = path_to_output + '/freq.txt'
 path_freq_bin = path_to_output + '/freq'
+path_vars = path_to_output + '/vars'
 
 # open digital RF path
 dio = drf.DigitalRFReader(path)
@@ -102,3 +105,7 @@ psd.tofile(path_psd_bin)
 psd.tofile(path_psd_txt, '\n')
 freq.tofile(path_freq_bin)
 freq.tofile(path_freq_txt, '\n')
+
+#save variables to file
+vars = [bins, st0, sr, path]
+pickle.dump(vars, path_vars)
