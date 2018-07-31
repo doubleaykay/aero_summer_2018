@@ -47,6 +47,14 @@ b = dio.get_bounds(channel)
 st0 = int(b[0])
 et0 = int(b[1])
 
+# get metadata
+mdt = dio.read_metadata(st0, et0, channel)
+try:
+    md = mdt[mdt.keys()[0]]
+    cfreq = md['center_frequencies'].ravel()
+except (IndexError, KeyError):
+    cfreq = 0.0
+
 blocks = bins * frames
 
 samples_per_stripe = num_fft * integration * decimation
@@ -109,6 +117,6 @@ freq.tofile(path_freq_bin)
 freq.tofile(path_freq_txt, '\n')
 
 #save variables to file
-vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt]
+vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq]
 pickle.dump(vars, file_vars)
 file_vars.close()
