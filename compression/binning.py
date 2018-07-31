@@ -42,3 +42,24 @@ def bin_to_nibble(raw, low, high):
             else:
                 i += 1
     return np.array(data_nibble)
+
+# Begin program
+
+# IO variables
+dir = '/home/anoush/Desktop/working/intermediate_test'
+path_vars = dir + '/vars'
+path_file_bytes = dir + '/psd_bytes.txt'
+path_file_nibbles = dir + 'psd_nibbles.txt'
+
+# Get variables from pickled file
+file_vars = open(path_vars, 'r')
+bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq = pickle.load(file_vars)
+file_vars.close()
+
+data = np.fromfile(path_psd_txt)
+
+data_b = bin_to_bytes(data, -4, 4)
+data_b.tofile(path_file_bytes)
+
+data_n = bin_to_nibble(data, -4, 4)
+data_n.tofile(path_file_nibbles)
