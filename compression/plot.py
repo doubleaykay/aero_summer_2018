@@ -49,6 +49,7 @@ vmax = 0
 
 #pull in intermediate files
 sti_psd_data = numpy.fromfile(path_psd_txt)
+sti_psd_data = numpy.expand_dims(sti_psd_data, axis=0)
 freq_axis = numpy.fromfile(path_freq_txt)
 
 for p in numpy.arange(1):
