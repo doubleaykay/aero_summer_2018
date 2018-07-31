@@ -19,6 +19,12 @@ def bin_to_bytes(raw, low, high):
                 data_byte.append(i)
                 i += 1
                 break
+            elif (b <= low):
+                data_byte.append(0)
+                break
+            elif (b >= high):
+                data_byte.append(255)
+                break
             else:
                 i += 1
     return np.array(data_byte)
@@ -39,6 +45,12 @@ def bin_to_nibble(raw, low, high):
                 data_nibble.append(i)
                 i += 1
                 break
+            elif (b <= low):
+                data_nibble.append(0)
+                break
+            elif (b >= high):
+                data_nibble.append(16)
+                break
             else:
                 i += 1
     return np.array(data_nibble)
@@ -56,10 +68,11 @@ file_vars = open(path_vars, 'r')
 bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq = pickle.load(file_vars)
 file_vars.close()
 
-data = np.fromfile(path_psd_txt)
+#data = np.fromfile(path_psd_txt)
+data = np.fromfile('/home/anoush/Desktop/working/intermediate_test/psd')
 
 data_b = bin_to_bytes(data, -4, 4)
-data_b.tofile(path_file_bytes)
+data_b.tofile(path_file_bytes, '\n')
 
-data_n = bin_to_nibble(data, -4, 4)
-data_n.tofile(path_file_nibbles)
+# data_n = bin_to_nibble(data, -4, 4)
+# data_n.tofile(path_file_nibbles, '\n')
