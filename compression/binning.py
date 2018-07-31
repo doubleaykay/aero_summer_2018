@@ -49,7 +49,7 @@ def bin_to_nibble(raw, low, high):
 dir = '/home/anoush/Desktop/working/intermediate_test'
 path_vars = dir + '/vars'
 path_file_bytes = dir + '/psd_bytes.txt'
-path_file_nibbles = dir + 'psd_nibbles.txt'
+path_file_nibbles = dir + '/psd_nibbles.txt'
 
 # Get variables from pickled file
 file_vars = open(path_vars, 'r')
