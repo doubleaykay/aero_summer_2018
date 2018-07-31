@@ -24,7 +24,7 @@ dir_plot = dir + '/plot.png'
 path_vars = dir + '/vars'
 #load vars from intermediate file processing script via pickle
 file_vars = open(path_vars, 'r')
-bins, st0, sr, path, path_psd_txt, path_freq_txt = pickle.load(file_vars)
+bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq = pickle.load(file_vars)
 file_vars.close()
 
 #other vars
