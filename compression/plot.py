@@ -24,7 +24,7 @@ dir_plot = dir + '/plot.png'
 path_vars = dir + '/vars'
 #load vars from intermediate file processing script via pickle
 file_vars = open(path_vars, 'r')
-bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq = pickle.load(file_vars)
+bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft = pickle.load(file_vars)
 file_vars.close()
 
 #other vars
@@ -49,7 +49,7 @@ vmax = 0
 
 #pull in intermediate files
 sti_psd_data = numpy.loadtxt(path_psd_txt)
-sti_psd_data = sti_psd_data.reshape((-1, 1024)).T
+sti_psd_data = sti_psd_data.reshape((-1, (num_fft / 2))).T
 freq_axis = numpy.fromfile(path_freq_txt)
 freq_axis = freq_axis[:1024]
 
