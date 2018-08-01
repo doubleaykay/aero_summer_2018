@@ -18,3 +18,14 @@ def compression_diffs(reference, compressed):
 
     diffs = np.array(diffs)
     return diffs
+
+# Begin Program
+unc = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd.txt')
+by = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd_bytes.txt')
+nb = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd_nibbles.txt')
+
+unc_by_diffs = compression_diffs(unc, by)
+unc_nb_diffs = compression_diffs(unc, nb)
+
+unc_by_diffs.tofile('/home/anoush/Desktop/working/intermediate_test/unc_by_diffs.txt', '\n')
+unc_nb_diffs.tofile('/home/anoush/Desktop/working/intermediate_test/unc_nb_diffs.txt', '\n')
