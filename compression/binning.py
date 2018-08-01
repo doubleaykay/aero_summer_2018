@@ -44,7 +44,7 @@ file_vars = open(path_vars, 'r')
 bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq = pickle.load(file_vars)
 file_vars.close()
 
-data = np.fromfile('/home/anoush/Desktop/working/intermediate_test/psd')
+data = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd.txt')
 
 data_b = bin_to_bytes(data, -4, 4)
 data_b.tofile(path_file_bytes, '\n')
