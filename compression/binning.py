@@ -34,9 +34,6 @@ def bin(raw, depth, low, high):
 
 # IO variables
 dir = '/home/anoush/Desktop/working/intermediate_test/binned/'
-path_vars = dir + '/vars'
-path_file_bytes = dir + '/psd_bytes.txt'
-path_file_nibbles = dir + '/psd_nibbles.txt'
 
 data = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd.txt')
 
