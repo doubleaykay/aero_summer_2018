@@ -48,9 +48,10 @@ vmin = 0
 vmax = 0
 
 #pull in intermediate files
-sti_psd_data = numpy.fromfile(path_psd_txt)
-sti_psd_data = numpy.expand_dims(sti_psd_data, axis=0)
+sti_psd_data = numpy.loadtxt(path_psd_txt)
+sti_psd_data = sti_psd_data.reshape((-1, 1024)).T
 freq_axis = numpy.fromfile(path_freq_txt)
+freq_axis = freq_axis[:1024]
 
 for p in numpy.arange(1):
     # Now Plot the Data
