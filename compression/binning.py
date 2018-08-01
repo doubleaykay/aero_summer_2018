@@ -31,10 +31,7 @@ def bin(raw, depth, low, high):
     return np.array(data)
 
 # Begin program
-
-# IO variables
 dir = '/home/anoush/Desktop/working/intermediate_test/binned/'
-
 data = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd.txt')
 
 bin(data, 8, -4, 4).tofile(dir + 'psd8.txt', '\n')
