@@ -24,7 +24,7 @@ def bin(raw, depth, low, high):
                 data.append(0)
                 break
             elif (b >= high):
-                data.append(max_in_depth)
+                data.append(max_in_depth - 1)
                 break
             else:
                 i += 1
