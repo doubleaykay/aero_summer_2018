@@ -33,15 +33,14 @@ def bin(raw, depth, low, high):
 # Begin program
 
 # IO variables
-dir = '/home/anoush/Desktop/working/intermediate_test'
+dir = '/home/anoush/Desktop/working/intermediate_test/binned/'
 path_vars = dir + '/vars'
 path_file_bytes = dir + '/psd_bytes.txt'
 path_file_nibbles = dir + '/psd_nibbles.txt'
 
 data = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd.txt')
 
-data_b = bin_to_bytes(data, -4, 4)
-data_b.tofile(path_file_bytes, '\n')
-
-data_n = bin_to_nibble(data, -4, 4)
-data_n.tofile(path_file_nibbles, '\n')
+bin(data, 8, -4, 4).tofile(dir + 'psd8.txt', '\n')
+bin(data, 4, -4, 4).tofile(dir + 'psd4.txt', '\n')
+bin(data, 2, -4, 4).tofile(dir + 'psd2.txt', '\n')
+bin(data, 1, -4, 4).tofile(dir + 'psd1.txt', '\n')
