@@ -1,6 +1,6 @@
 import numpy as np
 
-"""Functions and code to bin data into bytes and nibbles."""
+"""Functions and code to bin data into specific bit depth."""
 
 def bin(raw, depth, low, high):
     """Bin data into specified bit-depth.
