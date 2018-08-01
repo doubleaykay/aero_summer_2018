@@ -9,7 +9,7 @@ def compression_diffs(reference, compressed):
     diffs = []
     if len(reference) == len(scaled):
         i = 0
-        while i <= len(reference):
+        while i <= (len(reference) -1):
             diffs.append(reference[i] - scaled[i])
             i += 1
     else:
