@@ -117,6 +117,6 @@ freq.tofile(path_freq_bin)
 freq.tofile(path_freq_txt, '\n')
 
 #save variables to file
-vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq]
+vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft]
 pickle.dump(vars, file_vars)
 file_vars.close()
