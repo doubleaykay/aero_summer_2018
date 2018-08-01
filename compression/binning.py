@@ -1,5 +1,4 @@
 import numpy as np
-import pickle
 
 """Functions and code to bin data into bytes and nibbles."""
 
@@ -38,11 +37,6 @@ dir = '/home/anoush/Desktop/working/intermediate_test'
 path_vars = dir + '/vars'
 path_file_bytes = dir + '/psd_bytes.txt'
 path_file_nibbles = dir + '/psd_nibbles.txt'
-
-# Get variables from pickled file
-file_vars = open(path_vars, 'r')
-bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq = pickle.load(file_vars)
-file_vars.close()
 
 data = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd.txt')
 
