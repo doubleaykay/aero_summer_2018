@@ -10,7 +10,8 @@ def compression_diffs(reference, compressed):
     if len(reference) == len(scaled):
         i = 0
         while i <= (len(reference) -1):
-            diffs.append(reference[i] - scaled[i])
+            value = abs(reference[i] - scaled[i])
+            diffs.append(value)
             i += 1
     else:
         print('Arrays are not equal in length.')
