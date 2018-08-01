@@ -4,7 +4,7 @@ import numpy as np
 
 def bin(raw, depth, low, high):
     """Bin data into specified bit-depth.
-    :raw: data array
+    :raw: array, data
     :depth: int, bit depth (i.e. 8, 4, etc)
     :low: int, minimum value of data
     :high: int, maximum value of data
