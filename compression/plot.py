@@ -47,12 +47,12 @@ for p in numpy.arange(1):
         numpy.max(freq_axis) / 1e3,
     )
 
-    # determine image color extent in log scale units
+    # determine image color extent (5th to 95th percentile)
     Pss = sti_psd_data
-
     vmin = numpy.real(numpy.percentile(Pss, 5))
     vmax = numpy.real(numpy.percentile(Pss, 95))
 
+    # plot data
     im = ax.imshow(sti_psd_data, cmap='gray', origin='lower', extent=extent, interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
 
     ax.set_ylabel('f (Hz)', fontsize=8)
@@ -95,15 +95,12 @@ for p in numpy.arange(1):
 start_time = st0 / sr
 srt_time = time.gmtime(start_time)
 sub_second = int(round((start_time - int(start_time)) * 100))
-
 timestamp = "%d-%02d-%02d %02d:%02d:%02d.%02d UT" % (srt_time[0], srt_time[1], srt_time[2], srt_time[3], srt_time[4], srt_time[5], sub_second)
 
+# add and modify aspects of plot post-plotting
 f.suptitle('%s %s %4.2f MHz' % (title, timestamp, cfreq / 1E6), fontsize=10)
 
-# ax.legend(fontsize=8)
 ax.set_xlabel('time (UTC)', fontsize=8)
-
-# fixup ticks
 
 tl = ax.get_xticklabels()
 for tk in tl:
@@ -122,6 +119,6 @@ f.subplots_adjust(top=0.95, right=0.88)
 cax = f.add_axes([0.9, 0.12, 0.02, 0.80])
 f.colorbar(im, cax=cax)
 
-#save and show plot
-#matplotlib.pyplot.savefig(dir_plot)
+# save and show plot
+# matplotlib.pyplot.savefig(dir_plot)
 matplotlib.pyplot.show()
