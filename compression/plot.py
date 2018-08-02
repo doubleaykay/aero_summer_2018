@@ -98,7 +98,7 @@ sub_second = int(round((start_time - int(start_time)) * 100))
 
 timestamp = "%d-%02d-%02d %02d:%02d:%02d.%02d UT" % (srt_time[0], srt_time[1], srt_time[2], srt_time[3], srt_time[4], srt_time[5], sub_second)
 
-f.suptitle('%s %s %4.2f MHz (%s)' % (title, timestamp, cfreq / 1E6, path), fontsize=10)
+f.suptitle('%s %s %4.2f MHz' % (title, timestamp, cfreq / 1E6), fontsize=10)
 
 # ax.legend(fontsize=8)
 ax.set_xlabel('time (UTC)', fontsize=8)
