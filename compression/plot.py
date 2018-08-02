@@ -69,7 +69,7 @@ for p in numpy.arange(1):
     # plot dates
     tick_spacing = numpy.arange(bins / 8, bins, bins / 8)
     ax.set_xticks(tick_spacing)
-    #tick_labels = []
+    tick_labels = []
 
     for s in tick_spacing:
        tick_time = sti_times[s]
