@@ -35,7 +35,7 @@ vmax = 0
 #read intermediate files
 sti_psd_data = numpy.loadtxt(path_psd_txt)
 sti_psd_data = 10 * sti_psd_data.reshape((-1, (num_fft / 2))).T
-freq_axis = numpy.fromfile(path_freq_txt)
+freq_axis = numpy.loadtxt(path_freq_txt)
 freq_axis = freq_axis[:1024]
 sti_times = numpy.loadtxt(path_sti_times)
 
