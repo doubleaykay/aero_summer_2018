@@ -121,7 +121,11 @@ psd.tofile(path_psd_bin)
 psd.tofile(path_psd_txt, '\n')
 freq.tofile(path_freq_bin)
 freq.tofile(path_freq_txt, '\n')
-sti_times.tofile(path_sti_times, '\n')
+
+# pickle sti_psd data
+file_sti_times = open(path_sti_times, 'rw+')
+pickle.dump(sti_times, file_sti_times)
+file_sti_times.close()
 
 #save variables to file
 vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft, path_sti_times]
