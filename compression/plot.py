@@ -12,7 +12,7 @@ dir = '/home/anoush/Desktop/working/intermediate_test'
 dir_plot = dir + '/plot.png'
 path_vars = dir + '/vars'
 
-#load vars from intermediate file processing script via pickle
+# load vars from intermediate file processing script via pickle
 file_vars = open(path_vars, 'r')
 bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft, path_sti_times = pickle.load(file_vars)
 file_vars.close()
@@ -28,16 +28,20 @@ gridspec = matplotlib.gridspec.GridSpec(1, 1)
 
 ax = f.add_subplot(gridspec[0])
 
-#initial vmin and vmax values
+# initial vmin and vmax values
 vmin = 0
 vmax = 0
 
-#read intermediate files
+# read intermediate files
 sti_psd_data = numpy.loadtxt(path_psd_txt)
 sti_psd_data = 10 * sti_psd_data.reshape((-1, (num_fft / 2))).T
 freq_axis = numpy.loadtxt(path_freq_txt)
 freq_axis = freq_axis[:1024]
-sti_times = numpy.loadtxt(path_sti_times)
+
+# load sti_times from pickle
+file_sti_times = open(path_sti_times, 'rw+')
+sti_times = pickle.load(file_sti_times)
+file_sti_times.close()
 
 for p in numpy.arange(1):
     # determine image x-y extent
