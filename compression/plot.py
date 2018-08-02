@@ -14,7 +14,7 @@ path_vars = dir + '/vars'
 
 #load vars from intermediate file processing script via pickle
 file_vars = open(path_vars, 'r')
-bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft = pickle.load(file_vars)
+bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft, path_sti_times = pickle.load(file_vars)
 file_vars.close()
 
 title = 'Digital RF Data'
@@ -37,6 +37,7 @@ sti_psd_data = numpy.loadtxt(path_psd_txt)
 sti_psd_data = 10 * sti_psd_data.reshape((-1, (num_fft / 2))).T
 freq_axis = numpy.fromfile(path_freq_txt)
 freq_axis = freq_axis[:1024]
+sti_times = numpy.loadtxt(path_sti_times)
 
 for p in numpy.arange(1):
     # determine image x-y extent
@@ -66,17 +67,17 @@ for p in numpy.arange(1):
     ax.set_xticks(tick_spacing)
     #tick_labels = []
 
-    #for s in tick_spacing:
-    #    tick_time = sti_times[s]
-    #
-    #    if tick_time == 0:
-    #        tick_string = ''
-    #    else:
-    #        gm_tick_time = time.gmtime(numpy.real(tick_time))
-    #        tick_string = '%02d:%02d:%02d' % (gm_tick_time[3], gm_tick_time[4], gm_tick_time[5])
-    #        tick_labels.append(tick_string)
+    for s in tick_spacing:
+       tick_time = sti_times[s]
 
-    #ax.set_xticklabels(tick_labels)
+       if tick_time == 0:
+           tick_string = ''
+       else:
+           gm_tick_time = time.gmtime(numpy.real(tick_time))
+           tick_string = '%02d:%02d:%02d' % (gm_tick_time[3], gm_tick_time[4], gm_tick_time[5])
+           tick_labels.append(tick_string)
+
+    ax.set_xticklabels(tick_labels)
 
     # set the font sizes
     tl = ax.get_xticklabels()
