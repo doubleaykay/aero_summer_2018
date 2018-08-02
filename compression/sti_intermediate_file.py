@@ -31,6 +31,7 @@ path_psd_bin = path_to_output + '/psd'
 path_freq_txt = path_to_output + '/freq.txt'
 path_freq_bin = path_to_output + '/freq'
 path_vars = path_to_output + '/vars'
+path_sti_times = path_to_output + '/sti_times.txt'
 
 file_vars = open(path_vars, 'rw+')
 
@@ -78,6 +79,9 @@ def split_list(a_list):
     half = len(a_list)/2
     return a_list[:half], a_list[half:]
 
+#create sti_times array for use when plotting
+sti_times = numpy.zeros([bins], numpy.complex128)
+
 for b in numpy.arange(bins):
     data = dio.read_vector(start_sample, samples_per_stripe, channel)
 
@@ -101,6 +105,8 @@ for b in numpy.arange(bins):
     psd.append(psd2)
     freq.append(freq2)
 
+    sti_times[b] = start_sample / sr
+
     start_sample += stripe_stride
 
 #convert arrays to numpy arrays
@@ -115,8 +121,9 @@ psd.tofile(path_psd_bin)
 psd.tofile(path_psd_txt, '\n')
 freq.tofile(path_freq_bin)
 freq.tofile(path_freq_txt, '\n')
+sti_times.tofile(path_sti_times, '\n')
 
 #save variables to file
-vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft]
+vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft, path_sti_times]
 pickle.dump(vars, file_vars)
 file_vars.close()
