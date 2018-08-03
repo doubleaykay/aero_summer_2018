@@ -11,21 +11,30 @@ import scipy
 import scipy.signal
 
 import pickle
+import argparse
 
 """Generate processed intermediate file that can be used to generate a spectral time intensity plot.
 Intermediate file is as compressed as possible. Data processing is based on the method from the MIT Haystack digital_rf drf.sti.py tool,
 so everything is written to be as similar to drf_sti.py as possible. It has been simplified for the purposes of AERO."""
 
+#get arguments from command line
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="location of drf directory to read from")
+parser.add_argument("-o", "--output", help="location of directory to output to")
+parser.add_argument("-n", "--num_fft", help="number of FFT bins")
+parser.add_argument("-c", "--channel", help="drf channel to read from")
+parser.add_argument("-b", "--bins", help="number of time bins")
+args = parser.parse_args()
 
-channel = 'ant0'
-path = '/media/anoush/5358359c-0dd3-4f0f-89a8-9716f7c6869d/_data/2_converted/20180506-0823-0840-TLK-INT/'
-bins = 1000
+channel = args.channel
+path = args.input
+bins = args.bins #1000
 frames = 1
-num_fft = 2048
+num_fft = args.num_fft #2048
 integration = 1
 decimation = 1
 
-path_to_output = '/home/anoush/Desktop/working/intermediate_test' #folder to place output files in
+path_to_output = args.output #folder to place output files in
 path_psd_txt = path_to_output + '/psd.txt'
 path_psd_bin = path_to_output + '/psd'
 path_freq_txt = path_to_output + '/freq.txt'
