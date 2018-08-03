@@ -27,25 +27,25 @@ parser.add_argument("-b", "--bins", help="number of time bins")
 args = parser.parse_args()
 
 channel = args.channel
-path = args.input
+dir_in = args.input
 bins = args.bins #1000
 frames = 1
 num_fft = args.num_fft #2048
 integration = 1
 decimation = 1
 
-path_to_output = args.output #folder to place output files in
-path_psd_txt = path_to_output + '/psd.txt'
-path_psd_bin = path_to_output + '/psd'
-path_freq_txt = path_to_output + '/freq.txt'
-path_freq_bin = path_to_output + '/freq'
-path_vars = path_to_output + '/vars'
-path_sti_times = path_to_output + '/sti_times.txt'
+dir_out = args.output #folder to place output files in
+path_psd_txt = dir_out + '/psd.txt'
+path_psd_bin = dir_out + '/psd'
+path_freq_txt = dir_out + '/freq.txt'
+path_freq_bin = dir_out + '/freq'
+path_vars = dir_out + '/vars'
+path_sti_times = dir_out + '/sti_times.txt'
 
 file_vars = open(path_vars, 'rw+')
 
 # open digital RF path
-dio = drf.DigitalRFReader(path)
+dio = drf.DigitalRFReader(dir_in)
 
 # initialize outside the loop to avoid memory leak
 
