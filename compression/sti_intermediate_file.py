@@ -45,13 +45,11 @@ decimation = 1
 # open digital RF path
 dio = drf.DigitalRFReader(dir_in)
 
-# initialize outside the loop to avoid memory leak
-
+# get sampling rate
 sr = dio.get_properties(channel)['samples_per_second']
 
-# initial time info
+# get data bounds
 b = dio.get_bounds(channel)
-
 st0 = int(b[0])
 et0 = int(b[1])
 
@@ -63,6 +61,7 @@ try:
 except (IndexError, KeyError):
     cfreq = 0.0
 
+# calculations for processing
 blocks = bins * frames
 
 samples_per_stripe = num_fft * integration * decimation
@@ -116,14 +115,16 @@ for b in numpy.arange(bins):
 
     start_sample += stripe_stride
 
-#convert arrays to numpy arrays
+# convert arrays to numpy arrays
 psd = numpy.array(psd)
 freq = numpy.array(freq)
 
-#take log10 of the psd array
+# frequency binning happens here
+
+# take log10 of the psd array
 psd = numpy.log10(psd)
 
-#save data to files
+# save data to files
 psd.tofile(path_psd_txt, '\n')
 freq.tofile(path_freq_txt, '\n')
 
@@ -132,7 +133,7 @@ file_sti_times = open(path_sti_times, 'rw+')
 pickle.dump(sti_times, file_sti_times)
 file_sti_times.close()
 
-#save variables to file
+# save variables to file
 file_vars = open(path_vars, 'rw+')
 vars = [bins, st0, sr, path, psd_txt, freq_txt, cfreq, num_fft, sti_times_txt]
 pickle.dump(vars, file_vars)
