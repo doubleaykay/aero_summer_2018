@@ -26,21 +26,22 @@ parser.add_argument("-c", "--channel", help="drf channel to read from")
 parser.add_argument("-b", "--bins", help="number of time bins")
 args = parser.parse_args()
 
-channel = args.channel
+# IO variables
 dir_in = args.input
-bins = args.bins #1000
-frames = 1
-num_fft = args.num_fft #2048
-integration = 1
-decimation = 1
-
 dir_out = args.output #folder to place output files in
 path_psd_txt = dir_out + '/psd.txt'
 path_freq_txt = dir_out + '/freq.txt'
 path_vars = dir_out + '/vars'
 path_sti_times = dir_out + '/sti_times.txt'
 
-file_vars = open(path_vars, 'rw+')
+# processing variables
+channel = args.channel
+bins = args.bins #1000
+frames = 1
+num_fft = args.num_fft #2048
+integration = 1
+decimation = 1
+
 
 # open digital RF path
 dio = drf.DigitalRFReader(dir_in)
@@ -133,6 +134,7 @@ pickle.dump(sti_times, file_sti_times)
 file_sti_times.close()
 
 #save variables to file
+file_vars = open(path_vars, 'rw+')
 vars = [bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft, path_sti_times]
 pickle.dump(vars, file_vars)
 file_vars.close()
