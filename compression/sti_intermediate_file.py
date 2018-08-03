@@ -36,9 +36,7 @@ decimation = 1
 
 dir_out = args.output #folder to place output files in
 path_psd_txt = dir_out + '/psd.txt'
-path_psd_bin = dir_out + '/psd'
 path_freq_txt = dir_out + '/freq.txt'
-path_freq_bin = dir_out + '/freq'
 path_vars = dir_out + '/vars'
 path_sti_times = dir_out + '/sti_times.txt'
 
@@ -126,9 +124,7 @@ freq = numpy.array(freq)
 psd = numpy.log10(psd)
 
 #save data to files
-psd.tofile(path_psd_bin)
 psd.tofile(path_psd_txt, '\n')
-freq.tofile(path_freq_bin)
 freq.tofile(path_freq_txt, '\n')
 
 # pickle sti_psd data
