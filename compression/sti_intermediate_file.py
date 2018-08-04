@@ -125,12 +125,12 @@ freq = numpy.array(freq)
 psd = numpy.log10(psd)
 
 # save data to files
-psd.tofile(path_psd_txt, '\n')
-freq.tofile(path_freq_txt, '\n')
+psd.tofile(psd_txt, '\n')
+freq.tofile(freq_txt, '\n')
 
 # pickle sti_psd data
-file_sti_times = open(path_sti_times, 'rw+')
-pickle.dump(sti_times, file_sti_times)
+file_sti_times = open(sti_times_txt, 'rw+')
+pickle.dump(sti_times, sti_times_txt)
 file_sti_times.close()
 
 # save variables to file
