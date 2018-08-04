@@ -7,6 +7,14 @@ import numpy
 import numpy.fft
 
 import pickle
+import argparse
+
+# get arguments from command line
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="location of directory to read from")
+parser.add_argument("-c", "--channel", help="drf channel to read from")
+parser.add_argument("-b", "--bit_depth", help="bit depth folder to read from")
+args = parser.parse_args()
 
 dir = '/home/anoush/Desktop/working/intermediate_test'
 dir_plot = dir + '/plot.png'
