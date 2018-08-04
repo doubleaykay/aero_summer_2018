@@ -26,14 +26,6 @@ parser.add_argument("-c", "--channel", help="drf channel to read from")
 parser.add_argument("-b", "--bins", help="number of time bins")
 args = parser.parse_args()
 
-# IO variables
-dir_in = args.input
-dir_out = args.output #folder to place output files in
-psd_txt = dir_out + '/raw/psd.txt'
-freq_txt = dir_out + '/freq.txt'
-vars_txt = dir_out + '/vars.txt'
-sti_times_txt = dir_out + '/sti_times.txt'
-
 # processing variables
 channel = args.channel
 bins = args.bins #1000
@@ -41,6 +33,14 @@ frames = 1
 num_fft = args.num_fft #2048
 integration = 1
 decimation = 1
+
+# IO variables
+dir_in = args.input
+dir_out = args.output + '/' + channel #folder to place output files in
+psd_txt = dir_out + '/raw/psd.txt'
+freq_txt = dir_out + '/freq.txt'
+vars_txt = dir_out + '/vars.txt'
+sti_times_txt = dir_out + '/sti_times.txt'
 
 # open digital RF path
 dio = drf.DigitalRFReader(dir_in)

@@ -37,9 +37,10 @@ def bin(raw, depth, low, high):
 # get arguments from command line
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input", help="location of directory to read from")
+parser.add_argument("-c", "--channel", help="drf channel to read from")
 args = parser.parse_args()
 
-dir = args.input
+dir = args.input + '/' + args.channel
 data = np.loadtxt(dir + '/psd.txt')
 
 bin(data, 8, -4, 4).tofile(dir + '/8_bit/psd8.txt', '\n')
