@@ -1,5 +1,7 @@
 import numpy as np
 
+import argparse
+
 """Functions and code to bin data into specific bit depth."""
 
 def bin(raw, depth, low, high):
@@ -31,10 +33,20 @@ def bin(raw, depth, low, high):
     return np.array(data)
 
 # Begin program
-dir = '/home/anoush/Desktop/working/intermediate_test/binned/'
-data = np.loadtxt('/home/anoush/Desktop/working/intermediate_test/psd.txt')
 
-bin(data, 8, -4, 4).tofile(dir + 'psd8.txt', '\n')
-bin(data, 4, -4, 4).tofile(dir + 'psd4.txt', '\n')
-bin(data, 2, -4, 4).tofile(dir + 'psd2.txt', '\n')
-bin(data, 1, -4, 4).tofile(dir + 'psd1.txt', '\n')
+# get arguments from command line
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="location of directory to read from")
+args = parser.parse_args()
+
+dir = args.input
+data = np.loadtxt(dir + '/psd.txt')
+
+bin(data, 8, -4, 4).tofile(dir + '/8_bit/psd8.txt', '\n')
+bin(data, 7, -4, 4).tofile(dir + '/7_bit/psd7.txt', '\n')
+bin(data, 6, -4, 4).tofile(dir + '/6_bit/psd6.txt', '\n')
+bin(data, 5, -4, 4).tofile(dir + '/5_bit/psd5.txt', '\n')
+bin(data, 4, -4, 4).tofile(dir + '/4_bit/psd4.txt', '\n')
+bin(data, 3, -4, 4).tofile(dir + '/3_bit/psd3.txt', '\n')
+bin(data, 2, -4, 4).tofile(dir + '/2_bit/psd2.txt', '\n')
+bin(data, 1, -4, 4).tofile(dir + '/1_bit/psd1.txt', '\n')
