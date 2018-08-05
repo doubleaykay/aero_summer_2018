@@ -16,8 +16,13 @@ parser.add_argument("-c", "--channel", help="drf channel to read from")
 parser.add_argument("-b", "--bit_depth", help="bit depth folder to read from")
 args = parser.parse_args()
 
-dir = args.input + '/' + args.channel + '/' + args.bit_depth + '_bit'
-dir_plot = dir + '/psd' + args.bit_depth + '.png'
+if (args.bit_depth == 'raw'):
+    dir = args.input + '/' + args.channel + '/raw'
+    dir_plot = dir + '/psd.png'
+else:
+    dir = args.input + '/' + args.channel + '/' + args.bit_depth + '_bit'
+    dir_plot = dir + '/psd' + args.bit_depth + '.png'
+
 path_vars = args.input + '/' + args.channel + '/vars.txt'
 
 # load vars from intermediate file processing script via pickle
