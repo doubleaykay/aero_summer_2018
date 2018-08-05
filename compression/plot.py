@@ -16,23 +16,25 @@ parser.add_argument("-c", "--channel", help="drf channel to read from")
 parser.add_argument("-b", "--bit_depth", help="bit depth folder to read from")
 args = parser.parse_args()
 
+# setup IO vars
 if (args.bit_depth == 'raw'):
     dir = args.input + '/' + args.channel + '/raw'
     dir_plot = dir + '/psd.png'
+    psd_txt = dir + '/psd.txt'
 else:
     dir = args.input + '/' + args.channel + '/' + args.bit_depth + '_bit'
     dir_plot = dir + '/psd' + args.bit_depth + '.png'
+    psd_txt = dir + '/psd' + args.bit_depth + '.txt'
 
 path_vars = args.input + '/' + args.channel + '/vars.txt'
+
+freq_txt = args.input + '/' + args.channel + '/freq.txt'
+sti_times_txt = args.input + '/' + args.channel + '/sti_times.txt'
 
 # load vars from intermediate file processing script via pickle
 file_vars = open(path_vars, 'r')
 bins, st0, sr, cfreq, num_fft = pickle.load(file_vars)
 file_vars.close()
-
-psd_txt =
-freq_txt =
-sti_times_txt =
 
 title = args.bit_depth + ' Bit Depth Plot'
 
