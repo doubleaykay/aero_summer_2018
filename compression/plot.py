@@ -22,7 +22,7 @@ path_vars = dir + '/vars'
 
 # load vars from intermediate file processing script via pickle
 file_vars = open(path_vars, 'r')
-bins, st0, sr, path, path_psd_txt, path_freq_txt, cfreq, num_fft, path_sti_times = pickle.load(file_vars)
+bins, st0, sr, path, psd_txt, freq_txt, cfreq, num_fft, sti_times_txt = pickle.load(file_vars)
 file_vars.close()
 
 title = 'Digital RF Data'
