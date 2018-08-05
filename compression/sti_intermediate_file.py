@@ -135,6 +135,6 @@ file_sti_times.close()
 
 # save variables to file
 file_vars = open(path_vars, 'rw+')
-vars = [bins, st0, sr, path, psd_txt, freq_txt, cfreq, num_fft, sti_times_txt]
+vars = [bins, st0, sr, cfreq, num_fft]
 pickle.dump(vars, file_vars)
 file_vars.close()

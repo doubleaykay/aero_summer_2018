@@ -27,8 +27,12 @@ path_vars = args.input + '/' + args.channel + '/vars.txt'
 
 # load vars from intermediate file processing script via pickle
 file_vars = open(path_vars, 'r')
-bins, st0, sr, path, psd_txt, freq_txt, cfreq, num_fft, sti_times_txt = pickle.load(file_vars)
+bins, st0, sr, cfreq, num_fft = pickle.load(file_vars)
 file_vars.close()
+
+psd_txt =
+freq_txt =
+sti_times_txt =
 
 title = args.bit_depth + ' Bit Depth Plot'
 
@@ -52,8 +56,8 @@ freq_axis = numpy.loadtxt(freq_txt)
 freq_axis = freq_axis[:1024]
 
 # load sti_times from pickle
-file_sti_times = open(path_sti_times, 'rw+')
-sti_times = pickle.load(sti_times_txt)
+file_sti_times = open(sti_times_txt, 'rw+')
+sti_times = pickle.load(file_sti_times)
 file_sti_times.close()
 
 for p in numpy.arange(1):
