@@ -41,14 +41,14 @@ vmin = 0
 vmax = 0
 
 # read intermediate files
-sti_psd_data = numpy.loadtxt(path_psd_txt)
+sti_psd_data = numpy.loadtxt(psd_txt)
 sti_psd_data = 10 * sti_psd_data.reshape((-1, (num_fft / 2))).T
-freq_axis = numpy.loadtxt(path_freq_txt)
+freq_axis = numpy.loadtxt(freq_txt)
 freq_axis = freq_axis[:1024]
 
 # load sti_times from pickle
 file_sti_times = open(path_sti_times, 'rw+')
-sti_times = pickle.load(file_sti_times)
+sti_times = pickle.load(sti_times_txt)
 file_sti_times.close()
 
 for p in numpy.arange(1):
