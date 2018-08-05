@@ -30,7 +30,7 @@ file_vars = open(path_vars, 'r')
 bins, st0, sr, path, psd_txt, freq_txt, cfreq, num_fft, sti_times_txt = pickle.load(file_vars)
 file_vars.close()
 
-title = 'Digital RF Data'
+title = args.bit_depth + ' Bit Depth Plot'
 
 matplotlib.rc('axes', hold=False)
 
