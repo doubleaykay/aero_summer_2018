@@ -41,7 +41,7 @@ parser.add_argument("-c", "--channel", help="drf channel to read from")
 args = parser.parse_args()
 
 dir = args.input + '/' + args.channel
-data = np.loadtxt(dir + '/psd.txt')
+data = np.loadtxt(dir + '/raw/psd.txt')
 
 bin(data, 8, -4, 4).tofile(dir + '/8_bit/psd8.txt', '\n')
 bin(data, 7, -4, 4).tofile(dir + '/7_bit/psd7.txt', '\n')
