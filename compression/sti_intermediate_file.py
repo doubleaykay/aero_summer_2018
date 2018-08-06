@@ -28,9 +28,9 @@ args = parser.parse_args()
 
 # processing variables
 channel = args.channel
-bins = args.bins #1000
+bins = int(args.bins) #1000
 frames = 1
-num_fft = args.num_fft #2048
+num_fft = int(args.num_fft) #2048
 integration = 1
 decimation = 1
 
