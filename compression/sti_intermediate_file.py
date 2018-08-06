@@ -12,6 +12,8 @@ import scipy.signal
 
 import pickle
 import argparse
+import os
+from pathlib2 import Path
 
 """Generate processed intermediate file that can be used to generate a spectral time intensity plot.
 Intermediate file is as compressed as possible. Data processing is based on the method from the MIT Haystack digital_rf drf.sti.py tool,
@@ -41,6 +43,33 @@ psd_txt = dir_out + '/raw/psd.txt'
 freq_txt = dir_out + '/freq.txt'
 vars_txt = dir_out + '/vars.txt'
 sti_times_txt = dir_out + '/sti_times.txt'
+
+# ensure outputs all exist
+if not os.path.exists(dir_out):
+    os.makedirs(dir_out)
+
+if not os.path.exists(dir_out + '/raw'):
+    os.makedirs(dir_out + '/raw')
+
+if not Path(psd_txt).is_file():
+    f = open(psd_txt, 'w+')
+    f.close()
+    del f
+
+if not Path(freq_txt).is_file():
+    f = open(freq_txt, 'w+')
+    f.close()
+    del f
+
+if not Path(vars_txt).is_file():
+    f = open(vars_txt, 'w+')
+    f.close()
+    del f
+
+if not Path(sti_times_txt).is_file():
+    f = open(sti_times_txt, 'w+')
+    f.close()
+    del f
 
 # open digital RF path
 dio = drf.DigitalRFReader(dir_in)
