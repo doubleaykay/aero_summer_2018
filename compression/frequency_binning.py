@@ -9,6 +9,12 @@ def bin_from_freq_range(end_freq, cadence):
     bin = end_freq / cadence
     return bin
 
+def value_range_from_bin(bin, rate):
+    rate = rate - 1
+    end = (bin * rate) + (bin - 1)
+    start = end - rate
+    return start, end
+
 def bin_freq_avg10(array, max_freq):
     """Bin by frequencies using an average by 10 binning scheme. Returns numpy array of binned values.
     :array: raw data
