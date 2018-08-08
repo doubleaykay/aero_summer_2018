@@ -15,15 +15,21 @@ def value_range_from_bin(bin, rate):
     start = end - rate
     return start, end
 
-def bin_freq_avg10(array, max_freq):
+def bin_freq_avg10(array, max_freq, rate):
     """Bin by frequencies using an average by 10 binning scheme. Returns numpy array of binned values.
     :array: raw data
-    :max_freq: int, maximum frequency in data"""
+    :max_freq: int, maximum frequency in data
+    :rate: int, number of values per frequency bin in data"""
 
     # calculate bin cadence
-    bin_cadence = round((float(max_freq) / len(array) * 1000), 2)
+    bin_cadence = round((float(max_freq) / len(array) * rate), 2)
 
-
+    # split into sub-arrays for compression
+    c1 = array[:(value_range_from_bin(20, rate)[1] + 1)]
+    n1 = array[(value_range_from_bin(21, rate)[0] + 1):(value_range_from_bin(121, rate)[1] + 1)]
+    c2 = array[(value_range_from_bin(122, rate)[0] + 1):(value_range_from_bin(532, rate)[1] + 1)]
+    n2 = array[(value_range_from_bin(533, rate)[0] + 1):(value_range_from_bin(643, rate)[1] + 1)]
+    c3 = array[(value_range_from_bin(644, rate)[0] + 1):]
 
 
 # IO variables
@@ -32,4 +38,4 @@ psd_txt = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
 
-bin_freq_avg10(data, 5000)
+bin_freq_avg10(data, 5000, 1000)
