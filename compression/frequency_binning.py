@@ -21,6 +21,12 @@ def bin_freq_avg10(array, max_freq, rate):
     :max_freq: int, maximum frequency in data
     :rate: int, number of values per frequency bin in data"""
 
+    # function to split list into parts
+    def split_list(alist, wanted_parts):
+        length = len(alist)
+        return [ alist[i*length // wanted_parts: (i+1)*length // wanted_parts]
+                 for i in range(wanted_parts) ]
+
     # calculate bin cadence
     bin_cadence = round((float(max_freq) / len(array) * rate), 2)
 
