@@ -72,7 +72,9 @@ def avg10(array, bins, num_fft, max_freq):
     del b, c
 
     # do not average the next 103 bins
-    compressed.append(working[20:123])
+    for d in working[20:123]:
+        compressed.append(d)
+    del d
 
     # average the next 410 bins
     b = 123
@@ -83,7 +85,9 @@ def avg10(array, bins, num_fft, max_freq):
     del b, c
 
     # do not average the next 101 bins
-    compressed.append(working[533:634])
+    for d in working[533:634]:
+        compressed.append(d)
+    del d
 
     # average the next 390 bins
     b = 634
