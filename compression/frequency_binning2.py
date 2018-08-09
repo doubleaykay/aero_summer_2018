@@ -1,6 +1,6 @@
 import numpy as np
 
-def avg10(array, bins, num_fft):
+def avg10(array, bins, num_fft, max_freq):
     if not len(array) == (bins * num_fft):
         raise ValueError('Incorrect number of time or frequency bins provided.')
 
