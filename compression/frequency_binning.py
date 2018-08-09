@@ -37,6 +37,27 @@ def bin_freq_avg10(array, max_freq, rate):
     n2 = array[(value_range_from_bin(533, rate)[0] + 1):(value_range_from_bin(643, rate)[1] + 1)]
     c3 = array[(value_range_from_bin(644, rate)[0] + 1):]
 
+    print(len(c1), len(n1), len(c2), len(n2), len(c3))
+
+    # define compressed data array
+    compressed = []
+
+    # compress c1
+    a = split_list(c1, 2)[0]
+    b = split_list(c1, 2)[1]
+
+    compressed.append(np.average(a))
+    compressed.append(np.average(b))
+
+    compressed = np.array(compressed)
+    del a, b
+
+    # do not compress n1
+    compressed = np.concatenate((compressed, n1))
+    print(compressed.shape)
+    print(n1.shape)
+
+    # compress c2
 
 # IO variables
 psd_txt = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/psd.txt'
@@ -44,4 +65,4 @@ psd_txt = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
 
-bin_freq_avg10(data, 5000, 1000)
+# bin_freq_avg10(data, 5000, 1000)
