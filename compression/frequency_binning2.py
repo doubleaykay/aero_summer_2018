@@ -4,6 +4,9 @@ def avg10(array, bins, num_fft):
     if not len(array) == (bins * num_fft):
         raise ValueError('Incorrect number of time or frequency bins provided.')
 
+    # reshape data array into bins
+    raw = array.reshape((-1,num_fft))
+
 # IO variables
 psd_txt = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/psd.txt'
 
