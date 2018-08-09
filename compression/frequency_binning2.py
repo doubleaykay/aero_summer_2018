@@ -78,7 +78,7 @@ def avg10(array, bins, num_fft, max_freq):
 
     # average the next 410 bins
     b = 123
-    while b <= 533:
+    while b <= 523:
         c = b + 10
         compressed.append(np.average(working[b:c]))
         b += 10
@@ -91,7 +91,7 @@ def avg10(array, bins, num_fft, max_freq):
 
     # average the next 390 bins
     b = 634
-    while b <= 1024:
+    while b <= 1014:
         c = b + 10
         compressed.append(np.average(working[b:c]))
         b += 10
