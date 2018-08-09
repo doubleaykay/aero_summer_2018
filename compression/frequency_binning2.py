@@ -60,6 +60,7 @@ def avg10(array, bins, num_fft, max_freq):
             b += 10
         del b, c
 
+        del working
         a += 1
 
     return np.array(compressed)
