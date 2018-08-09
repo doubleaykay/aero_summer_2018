@@ -1,6 +1,14 @@
 import numpy as np
 
 def avg10(array, bins, num_fft, max_freq):
+    """Return a frequency binned numpy array of data. Frequency ranges to compress are hard coded,
+    and compression is done via a factor-of-10 average.
+
+    :array: numpy array, raw data
+    :bins: int, number of time bins
+    :num_fft: int, number of FFT frequency bins
+    :max_freq: int, maximum frequency of data in Hz"""
+
     if not len(array) == (bins * num_fft):
         raise ValueError('Incorrect number of time or frequency bins provided.')
 
@@ -8,6 +16,7 @@ def avg10(array, bins, num_fft, max_freq):
     # now, the dimentions are: raw[spectra (time bin) number,frequency (FFT bin) number]
     raw = array.reshape((-1,num_fft))
 
+    # initialize empty list to append compressed values to
     compressed = []
 
     # calculate FFT bin frequency step
