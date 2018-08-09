@@ -22,11 +22,79 @@ def avg10(array, bins, num_fft, max_freq):
     # calculate FFT bin frequency step
     step = round((float(max_freq) / num_fft), 2)
 
-    a = 0
-    while a <= (raw.shape[0] - 1):
-        working = raw[a,...]
+    # a = 0
+    # while a <= (raw.shape[0] - 1):
+    #     working = raw[a,...]
+    #
+    #     # average the first 20 bins
+    #     b = 0
+    #     while b <= 10:
+    #         c = b + 10
+    #         compressed.append(np.average(working[b:c]))
+    #         b += 10
+    #     del b
+    #
+    #     # do not average the next 103 bins
+    #     d = c + 103
+    #     compressed.append(working[c:d])
+    #     del c
+    #
+    #     # average the next 410 bins
+    #     while d <= d + 410:
+    #         e = d + 10
+    #         compressed.append(np.average(working[d:e]))
+    #         d += 10
+    #     del d
+    #
+    #     # do not average the next 101 bins
+    #     f = e + 101
+    #     compressed.append(working[e:f])
+    #     del e
+    #
+    #     # average the next 390 bins
+    #     while f <= f + 390:
+    #         g = f + 10
+    #         compressed.append(np.average(working[f:g]))
+    #         f += 10
+    #     del f
+    #     print(e)
+    #
+    #     a += 1
 
-        a += 1
+    working = raw[0,...]
+
+    # average the first 20 bins
+    b = 0
+    while b <= 10:
+        c = b + 10
+        compressed.append(np.average(working[b:c]))
+        b += 10
+    del b
+
+    # do not average the next 103 bins
+    d = c + 103
+    compressed.append(working[c:d])
+    del c
+
+    # average the next 410 bins
+    while d <= d + 410:
+        e = d + 10
+        compressed.append(np.average(working[d:e]))
+        d += 10
+    del d
+
+    # do not average the next 101 bins
+    f = e + 101
+    compressed.append(working[e:f])
+    del e
+
+    # average the next 390 bins
+    while f <= f + 390:
+        g = f + 10
+        compressed.append(np.average(working[f:g]))
+        f += 10
+    del f
+    print(e)
 
     return np.array(compressed)
 
