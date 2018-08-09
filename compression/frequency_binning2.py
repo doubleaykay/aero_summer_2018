@@ -10,6 +10,9 @@ def avg10(array, bins, num_fft, max_freq):
 
     compressed = np.array()
 
+    # calculate FFT bin frequency step
+    step = round((float(max_freq) / num_fft), 2)
+    
     a = 0
     while a <= (raw.shape[0] - 1):
         working = raw[a,...]
@@ -24,4 +27,4 @@ psd_txt = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
 
-avg10(data, 1000, 1024)
+avg10(data, 1000, 1024, 5000)
