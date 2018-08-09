@@ -142,9 +142,15 @@ def avg10_plot(array, bins, num_fft, max_freq):
     return np.array(compressed)
 
 # IO variables
-psd_txt = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/psd.txt'
+dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw'
+psd_txt = dir + '/psd.txt'
+new_txt = dir + '/psd_freq_binned.txt'
 
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
 
-avg10(data, 1000, 1024, 5000)
+new = avg10_plot(data, 1000, 1024, 5000)
+
+f = open(new_txt, 'w+')
+new.tofile(f, '\n')
+f.close()
