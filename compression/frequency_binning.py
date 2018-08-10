@@ -152,5 +152,5 @@ data = np.loadtxt(psd_txt)
 new = avg10_plot(data, 1000, 1024, 5000)
 
 f = open(new_txt, 'w+')
-new.tofile(f, '\n')
+np.log10(new).tofile(f, '\n')
 f.close()
