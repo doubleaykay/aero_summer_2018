@@ -68,16 +68,68 @@ def scheme1(array):
         del working
         a += 1
 
-    return compressed
+    return np.array(compressed)
+
+def scheme2(array):
+    bins = 1000
+    num_fft = 1024
+
+    raw = array.reshape((-1,num_fft))
+
+    compressed = []
+
+    a = 0
+    while a <= (raw.shape[0] - 1):
+        working = raw[a,...]
+
+        for d in freq_binning(working[0:20], 20, expand=True):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[20:124], 2, expand=True):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[124:524], 20, expand=True):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[524:634], 2, expand=True):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[634:774], 20, expand=True):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[774:864], 10, expand=True):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[864:1024], 20, expand=True):
+            compressed.append(d)
+        del d
+
+        del working
+        a += 1
+
+    return np.array(compressed)
 
 # IO variables
 dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw'
 psd_txt = dir + '/psd.txt'
-new_txt = dir + '/psd_freq_binned.txt'
+scheme1_txt = dir + '/freq_binned/scheme1.txt'
+scheme2_txt = dir + '/freq_binned/scheme2.txt'
 
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
 
-f = open(new_txt, 'w+')
-np.log10(np.array(scheme1(data))).tofile(f, '\n')
+# run scheme 1
+f = open(scheme1_txt, 'w+')
+np.log10(scheme1(data)).tofile(f, '\n')
+f.close()
+
+# run scheme 2
+f = open(scheme2_txt, 'w+')
+np.log10(scheme2(data)).tofile(f, '\n')
 f.close()
