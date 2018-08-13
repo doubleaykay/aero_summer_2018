@@ -31,7 +31,7 @@ def freq_binning(array, factor, expand=False):
         else:
             raise RuntimeError('Compression did not work, as new and old list lengths are not related by given factor.')
 
-def scheme1(array):
+def scheme1(array, expand):
     bins = 1000
     num_fft = 1024
 
@@ -43,7 +43,7 @@ def scheme1(array):
     while a <= (raw.shape[0] - 1):
         working = raw[a,...]
 
-        for d in freq_binning(working[0:20], 10, expand=True):
+        for d in freq_binning(working[0:20], 10, expand=expand):
             compressed.append(d)
         del d
 
@@ -52,7 +52,7 @@ def scheme1(array):
             compressed.append(d)
         del d
 
-        for d in freq_binning(working[123:533], 10, expand=True):
+        for d in freq_binning(working[123:533], 10, expand=expand):
             compressed.append(d)
         del d
 
@@ -61,7 +61,7 @@ def scheme1(array):
             compressed.append(d)
         del d
 
-        for d in freq_binning(working[634:1024], 10, expand=True):
+        for d in freq_binning(working[634:1024], 10, expand=expand):
             compressed.append(d)
         del d
 
@@ -70,7 +70,7 @@ def scheme1(array):
 
     return np.array(compressed)
 
-def scheme2(array):
+def scheme2(array, expand):
     bins = 1000
     num_fft = 1024
 
@@ -82,31 +82,31 @@ def scheme2(array):
     while a <= (raw.shape[0] - 1):
         working = raw[a,...]
 
-        for d in freq_binning(working[0:20], 20, expand=True):
+        for d in freq_binning(working[0:20], 20, expand=expand):
             compressed.append(d)
         del d
 
-        for d in freq_binning(working[20:124], 2, expand=True):
+        for d in freq_binning(working[20:124], 2, expand=expand):
             compressed.append(d)
         del d
 
-        for d in freq_binning(working[124:524], 20, expand=True):
+        for d in freq_binning(working[124:524], 20, expand=expand):
             compressed.append(d)
         del d
 
-        for d in freq_binning(working[524:634], 2, expand=True):
+        for d in freq_binning(working[524:634], 2, expand=expand):
             compressed.append(d)
         del d
 
-        for d in freq_binning(working[634:774], 20, expand=True):
+        for d in freq_binning(working[634:774], 20, expand=expand):
             compressed.append(d)
         del d
 
-        for d in freq_binning(working[774:864], 10, expand=True):
+        for d in freq_binning(working[774:864], 10, expand=expand):
             compressed.append(d)
         del d
 
-        for d in freq_binning(working[864:1024], 20, expand=True):
+        for d in freq_binning(working[864:1024], 20, expand=expand):
             compressed.append(d)
         del d
 
@@ -120,16 +120,28 @@ dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1
 psd_txt = dir + '/psd.txt'
 scheme1_txt = dir + '/freq_binned/scheme1.txt'
 scheme2_txt = dir + '/freq_binned/scheme2.txt'
+scheme1_ne_txt = dir + '/freq_binned/scheme1_ne.txt'
+scheme2_ne_txt = dir + '/freq_binned/scheme2_ne.txt'
 
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
 
 # run scheme 1
 f = open(scheme1_txt, 'w+')
-np.log10(scheme1(data)).tofile(f, '\n')
+np.log10(scheme1(data, True)).tofile(f, '\n')
+f.close()
+
+# run scheme 1 no expansion
+f = open(scheme1_ne_txt, 'w+')
+np.log10(scheme1(data, False)).tofile(f, '\n')
 f.close()
 
 # run scheme 2
 f = open(scheme2_txt, 'w+')
-np.log10(scheme2(data)).tofile(f, '\n')
+np.log10(scheme2(data, True)).tofile(f, '\n')
+f.close()
+
+# run scheme 2 no expansion
+f = open(scheme2_ne_txt, 'w+')
+np.log10(scheme2(data, False)).tofile(f, '\n')
 f.close()
