@@ -176,6 +176,7 @@ def avg10_plot(array, bins, num_fft, max_freq):
 dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw'
 psd_txt = dir + '/psd.txt'
 new_txt = dir + '/psd_freq_binned.txt'
+new_txt2 = dir + '/psd_freq_binned2.txt'
 
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
@@ -185,3 +186,44 @@ new = avg10_plot(data, 1000, 1024, 5000)
 f = open(new_txt, 'w+')
 np.log10(new).tofile(f, '\n')
 f.close()
+
+# test modular freq binning
+bins = 1000
+num_fft = 1024
+
+raw = data.reshape((-1,num_fft))
+
+compressed = []
+
+a = 0
+while a <= (raw.shape[0] - 1):
+    working = raw[a,...]
+
+    for d in freq_binning(working[0:20], 10, expand=True):
+        compressed.append(d)
+    del d
+
+    # do not average the next 103 bins
+    for d in working[20:123]:
+        compressed.append(d)
+    del d
+
+    for d in freq_binning(working[123:533], 10, expand=True):
+        compressed.append(d)
+    del d
+
+    # do not average the next 101 bins
+    for d in working[533:634]:
+        compressed.append(d)
+    del d
+
+    for d in freq_binning(working[634:1024], 10, expand=True):
+        compressed.append(d)
+    del d
+
+    del working
+    a += 1
+
+f2 = open(new_txt2, 'w+')
+np.log10(np.array(compressed)).tofile(f2, '\n')
+f2.close()
