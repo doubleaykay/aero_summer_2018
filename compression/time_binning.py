@@ -49,11 +49,11 @@ def time_scheme1(array, expand):
 
     # time average in frequency bins 124 to 288
     a = 124
-    while a <= 287:
-        b = a + 1
-        compress = raw[a:b,...]
+    while a <= 288:
+        # b = a + 1
+        compress = raw[a,...]
         print(len(compress))
-        new[a:b,...] = time_binning(compress, 10, expand=expand)
+        new[a,...] = time_binning(compress, 10, expand=expand)
         a += 1
     del a
 
@@ -63,9 +63,9 @@ def time_scheme1(array, expand):
     # time average in frequency bins 862 to 1024
     a = 862
     while a <= 1023:
-        b = a + 1
-        compress = raw[a:b,...]
-        new[a:b,...] = time_binning(compress, 10, expand=expand)
+        # b = a + 1
+        compress = raw[a,...]
+        new[a,...] = time_binning(compress, 10, expand=expand)
         a += 1
     del a
 
