@@ -115,6 +115,55 @@ def scheme2(array, expand):
 
     return np.array(compressed)
 
+def scheme3(array, expand):
+    bins = 1000
+    num_fft = 1024
+
+    raw = array.reshape((-1,num_fft))
+
+    compressed = []
+
+    a = 0
+    while a <= (raw.shape[0] - 1):
+        working = raw[a,...]
+
+        for d in freq_binning(working[0:20], 20, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[20:124], 2, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[124:524], 20, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[524:632], 4, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[632:634], 2, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[634:774], 20, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[774:864], 10, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[864:1024], 20, expand=expand):
+            compressed.append(d)
+        del d
+
+        del working
+        a += 1
+
+    return np.array(compressed)
+
 # IO variables
 dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw'
 psd_txt = dir + '/psd.txt'
