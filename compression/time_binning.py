@@ -96,12 +96,10 @@ data1 = np.array(data1)
 
 # run scheme 1
 f = open(scheme1_txt, 'w+')
-# np.log10(time_scheme1(data, True)).tofile(f, '\n')
-time_scheme1(data, True).tofile(f, '\n')
+np.log10(time_scheme1(data1, True)).tofile(f, '\n')
 f.close()
 
 # run scheme 1 not expanded
 f = open(scheme1_ne_txt, 'w+')
-# np.log10(time_scheme1(data, True)).tofile(f, '\n')
-time_scheme1(data, False).tofile(f, '\n')
+np.log10(time_scheme1(data1, True)).tofile(f, '\n')
 f.close()
