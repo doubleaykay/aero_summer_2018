@@ -53,9 +53,9 @@ def time_scheme1(array, expand):
     while a <= 288:
         # b = a + 1
         compress = raw[a,...]
-        if not expand:
-            new[a,...] = time_binning(compress, factor1, expand=expand)
         if expand:
+            new[a,...] = time_binning(compress, factor1, expand=expand)
+        if not expand:
             slice_end = len(compress) / factor1
             new[a,0:slice_end] = time_binning(compress, factor1, expand=expand)
         a += 1
@@ -70,9 +70,9 @@ def time_scheme1(array, expand):
     while a <= 1023:
         # b = a + 1
         compress = raw[a,...]
-        if not expand:
-            new[a,...] = time_binning(compress, factor1, expand=expand)
         if expand:
+            new[a,...] = time_binning(compress, factor1, expand=expand)
+        if not expand:
             slice_end = len(compress) / factor1
             new[a,0:slice_end] = time_binning(compress, factor1, expand=expand)
         a += 1
@@ -85,9 +85,9 @@ def time_scheme1(array, expand):
     if new1.shape == (bins, num_fft):
         # make array one dimensional again
         new2 = new1.reshape((1,-1))
-        if not expand:
-            return new2
         if expand:
+            return new2
+        if not expand:
             new3 = new2[new2 != 0]
             return new3
     else:
