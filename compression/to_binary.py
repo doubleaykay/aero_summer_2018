@@ -1,6 +1,6 @@
 import numpy as np
 
-def as_numpy(filename):
+def write_bin(filename):
     if '.txt' in filename:
         out = filename[:-4]
     else:
@@ -19,7 +19,7 @@ def as_numpy(filename):
 
     print('Success.')
 
-def read(filename):
+def read_bin(filename):
     a = np.fromfile(filename, dtype='i1')
     b0 = np.bitwise_and(a,15)
     b1 = np.bitwise_and(a,15<<4) >> 4
