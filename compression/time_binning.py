@@ -48,11 +48,16 @@ def time_scheme1(array, expand):
     new[0:124,...] = raw[0:124,...]
 
     # time average in frequency bins 124 to 288
+    factor1 = 10
     a = 124
     while a <= 288:
         # b = a + 1
         compress = raw[a,...]
-        new[a,...] = time_binning(compress, 10, expand=expand)
+        if not expand:
+            new[a,...] = time_binning(compress, factor1, expand=expand)
+        if expand:
+            slice_end = len(compress) / factor1
+            new[a,0:slice_end] = time_binning(compress, factor1, expand=expand)
         a += 1
     del a
 
@@ -60,11 +65,16 @@ def time_scheme1(array, expand):
     new[288:862,...] = raw[288:862,...]
 
     # time average in frequency bins 862 to 1024
+    factor2 = 10
     a = 862
     while a <= 1023:
         # b = a + 1
         compress = raw[a,...]
-        new[a,...] = time_binning(compress, 10, expand=expand)
+        if not expand:
+            new[a,...] = time_binning(compress, factor1, expand=expand)
+        if expand:
+            slice_end = len(compress) / factor1
+            new[a,0:slice_end] = time_binning(compress, factor1, expand=expand)
         a += 1
     del a
 
@@ -75,7 +85,11 @@ def time_scheme1(array, expand):
     if new1.shape == (bins, num_fft):
         # make array one dimensional again
         new2 = new1.reshape((1,-1))
-        return new2
+        if not expand:
+            return new2
+        if expand:
+            new3 = new2[new2 != 0]
+            return new3
     else:
         raise RuntimeError('Output array is the wrong shape, something went wrong.')
 
