@@ -78,3 +78,22 @@ def time_scheme1(array, expand):
         return new2
     else:
         raise RuntimeError('Output array is the wrong shape, something went wrong.')
+
+# IO variables
+dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/freq_binned'
+in_txt = dir + '/scheme3.txt'
+scheme1_txt = dir + '/time_binned/scheme1.txt'
+
+# load data from psd_txt
+data = np.loadtxt(in_txt)
+
+# undo log10 in data (this is temporary and needs to be fixed)
+data1 = []
+for a in data:
+    data1.append(10 ** a)
+data1 = np.array(data1)
+
+# run scheme 1
+f = open(scheme1_txt, 'w+')
+np.log10(time_scheme1(data, True)).tofile(f, '\n')
+f.close()
