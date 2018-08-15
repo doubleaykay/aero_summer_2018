@@ -39,7 +39,10 @@ def time_scheme1(array, expand):
 
     # reshape into two axis: axis zero is time, axis 1 is frequency
     # then take the transpose, so that axis zero is frequency
-    raw = array.reshape((-1,num_fft)).T
+    if expand:
+        raw = array.reshape((-1,num_fft)).T
+    if not expand:
+        raw = array
 
     # create new array
     new = np.zeros(raw.shape)
@@ -96,11 +99,15 @@ def time_scheme1(array, expand):
 # IO variables
 dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/freq_binned'
 in_txt = dir + '/scheme3.txt'
+in_txt_ne = dir + '/scheme3_ne.txt'
 scheme1_txt = dir + '/time_binned/scheme1.txt'
 scheme1_ne_txt = dir + '/time_binned/scheme1_ne.txt'
 
-# load data from psd_txt
+# load expanded data from psd_txt
 data = np.loadtxt(in_txt)
+
+# load non-expanded data from psd_txt
+data_ne = np.loadtxt(in_txt_ne)
 
 # undo log10 in data (this is temporary and needs to be fixed)
 data1 = []
@@ -108,12 +115,19 @@ for a in data:
     data1.append(10 ** a)
 data1 = np.array(data1)
 
+# undo log10 in data (this is temporary and needs to be fixed)
+data2 = []
+for a in data_ne:
+    data2.append(10 ** a)
+data2 = np.array(data2)
+
 # run scheme 1
 f = open(scheme1_txt, 'w+')
 np.log10(time_scheme1(data1, True)).tofile(f, '\n')
 f.close()
 
-# run scheme 1 not expanded
-f = open(scheme1_ne_txt, 'w+')
-np.log10(time_scheme1(data1, False)).tofile(f, '\n')
-f.close()
+# # run scheme 1 not expanded
+# data2 = data2.reshape((-1,125)).T
+# f = open(scheme1_ne_txt, 'w+')
+# np.log10(time_scheme1(data2, False)).tofile(f, '\n')
+# f.close()
