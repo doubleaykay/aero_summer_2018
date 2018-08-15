@@ -52,7 +52,6 @@ def time_scheme1(array, expand):
     while a <= 288:
         # b = a + 1
         compress = raw[a,...]
-        print(len(compress))
         new[a,...] = time_binning(compress, 10, expand=expand)
         a += 1
     del a
