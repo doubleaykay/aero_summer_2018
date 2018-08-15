@@ -21,8 +21,14 @@ def as_py(filename):
     with open(filename) as f:
         raw = f.readlines()
 
+    raw2 = []
+    for a in raw:
+        raw2.append(int(a.translate(None, '\n')))
+
+    # print(raw2)
+
     g = open(out, 'wb+')
-    g.write(bytearray(raw))
+    g.write(bytearray(raw2))
     g.close()
 
     print('Success.')
