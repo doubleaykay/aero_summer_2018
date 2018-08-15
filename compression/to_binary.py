@@ -7,7 +7,7 @@ def as_numpy(filename):
         raise ValueError('Based on provided filename, input is not a text file.')
 
     f = open(out, 'wb+')
-    np.loadtxt(filename).tofile(f)
+    np.loadtxt(filename, 'i1').tofile(f)
     f.close()
 
     print('Success.')
@@ -24,8 +24,6 @@ def as_py(filename):
     raw2 = []
     for a in raw:
         raw2.append(int(a.translate(None, '\n')))
-
-    # print(raw2)
 
     g = open(out, 'wb+')
     g.write(bytearray(raw2))
