@@ -169,8 +169,10 @@ dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1
 psd_txt = dir + '/psd.txt'
 scheme1_txt = dir + '/freq_binned/scheme1.txt'
 scheme2_txt = dir + '/freq_binned/scheme2.txt'
+scheme3_txt = dir + '/freq_binned/scheme3.txt'
 scheme1_ne_txt = dir + '/freq_binned/scheme1_ne.txt'
 scheme2_ne_txt = dir + '/freq_binned/scheme2_ne.txt'
+scheme3_ne_txt = dir + '/freq_binned/scheme3_ne.txt'
 
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
@@ -193,4 +195,14 @@ f.close()
 # run scheme 2 no expansion
 f = open(scheme2_ne_txt, 'w+')
 np.log10(scheme2(data, False)).tofile(f, '\n')
+f.close()
+
+# run scheme 3
+f = open(scheme3_txt, 'w+')
+np.log10(scheme3(data, True)).tofile(f, '\n')
+f.close()
+
+# run scheme 3 no expansion
+f = open(scheme3_ne_txt, 'w+')
+np.log10(scheme3(data, False)).tofile(f, '\n')
 f.close()
