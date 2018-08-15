@@ -6,8 +6,15 @@ def as_numpy(filename):
     else:
         raise ValueError('Based on provided filename, input is not a text file.')
 
+    a = np.loadtxt(filename, 'i1')
+    b = a.reshape((-1,2))
+
+    b[:,1] = b[:,1] << 4
+
+    c = np.bitwise_or(b[:,0], b[:,1]).astype('i1')
+
     f = open(out, 'wb+')
-    np.loadtxt(filename, 'i1').tofile(f)
+    c.tofile(f)
     f.close()
 
     print('Success.')
