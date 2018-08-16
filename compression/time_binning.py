@@ -131,8 +131,8 @@ def time_scheme2(array):
 
 # IO variables
 dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/freq_binned'
-in_txt = dir + '/scheme3.txt'
-in_txt_ne = dir + '/scheme3_ne.txt'
+in_txt = dir + '/scheme4.txt'
+in_txt_ne = dir + '/scheme4_ne.txt'
 scheme1_txt = dir + '/time_binned/scheme1.txt'
 scheme1_ne_txt = dir + '/time_binned/scheme1_ne.txt'
 
