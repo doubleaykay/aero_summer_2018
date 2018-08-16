@@ -215,9 +215,11 @@ psd_txt = dir + '/psd.txt'
 scheme1_txt = dir + '/freq_binned/scheme1.txt'
 scheme2_txt = dir + '/freq_binned/scheme2.txt'
 scheme3_txt = dir + '/freq_binned/scheme3.txt'
+scheme4_txt = dir + '/freq_binned/scheme4.txt'
 scheme1_ne_txt = dir + '/freq_binned/scheme1_ne.txt'
 scheme2_ne_txt = dir + '/freq_binned/scheme2_ne.txt'
 scheme3_ne_txt = dir + '/freq_binned/scheme3_ne.txt'
+scheme4_ne_txt = dir + '/freq_binned/scheme4_ne.txt'
 
 # load data from psd_txt
 data = np.loadtxt(psd_txt)
@@ -250,4 +252,14 @@ f.close()
 # run scheme 3 no expansion
 f = open(scheme3_ne_txt, 'w+')
 np.log10(scheme3(data, False)).tofile(f, '\n')
+f.close()
+
+# run scheme 4
+f = open(scheme4_txt, 'w+')
+np.log10(scheme4(data, True)).tofile(f, '\n')
+f.close()
+
+# run scheme 4 no expansion
+f = open(scheme4_ne_txt, 'w+')
+np.log10(scheme4(data, False)).tofile(f, '\n')
 f.close()
