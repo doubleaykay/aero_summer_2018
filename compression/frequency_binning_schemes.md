@@ -35,7 +35,7 @@ Bin 864 to 1024: average by a factor of 20
 **This results in 152 bins, a factor of 2 reduction from scheme1.**
 
 ## Scheme 3
-*Further tweaking averaging factors. This was the final frequency binning scheme applied to the data before time binning was done.*
+*Further tweaking averaging factors.*
 
 Bin 0 to 20: average by a factor of 20
 
@@ -54,3 +54,21 @@ Bin 774 to 864: average by a factor of 10
 Bin 864 to 1024: average by a factor of 20
 
 **125 bins with this scheme.**
+
+## Scheme 4
+
+Bin 0 to 20: average by a factor of 20
+
+Bin 20 to 124: average by a factor of 2
+
+Bin 124 to 524: average by a factor of 20
+
+Bin 524 to 616: average by a factor of 4
+
+Bin 616 to 776: average by a factor of 20
+
+Bin 776 to 864: average by a factor of 8
+
+Bin 864 to 1024: average by a factor of 20
+
+**123 bins with this scheme.**
