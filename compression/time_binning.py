@@ -66,7 +66,55 @@ def time_scheme1(array):
     while a <= 1023:
         # b = a + 1
         compress = raw[a,...]
+        new[a,...] = time_binning(compress, factor2, expand=True)
+        a += 1
+    del a
+
+    # transpose back to the original array shape
+    new1 = new.T
+
+    # ensure that the array is the correct shape
+    if new1.shape == (bins, num_fft):
+        # make array one dimensional again
+        new2 = new1.reshape((1,-1))
+        return new2
+    else:
+        raise RuntimeError('Output array is the wrong shape, something went wrong.')
+
+def time_scheme2(array):
+    bins = 1000
+    num_fft = 1024
+
+    # reshape into two axis: axis zero is time, axis 1 is frequency
+    # then take the transpose, so that axis zero is frequency
+    raw = array.reshape((-1,num_fft)).T
+
+    # create new array
+    new = np.zeros(raw.shape)
+
+    # don't time average in frequency bins 0 to 124
+    new[0:124,...] = raw[0:124,...]
+
+    # time average in frequency bins 124 to 288
+    factor1 = 5
+    a = 124
+    while a <= 288:
+        # b = a + 1
+        compress = raw[a,...]
         new[a,...] = time_binning(compress, factor1, expand=True)
+        a += 1
+    del a
+
+    # don't time average in frequency bins 288 to 862
+    new[288:862,...] = raw[288:862,...]
+
+    # time average in frequency bins 862 to 1024
+    factor2 = 5
+    a = 862
+    while a <= 1023:
+        # b = a + 1
+        compress = raw[a,...]
+        new[a,...] = time_binning(compress, factor2, expand=True)
         a += 1
     del a
 
@@ -108,7 +156,7 @@ data2 = np.array(data2)
 
 # run scheme 1
 f = open(scheme1_txt, 'w+')
-np.log10(time_scheme1(data1)).tofile(f, '\n')
+np.log10(time_scheme2(data1)).tofile(f, '\n')
 f.close()
 
 # # run scheme 1 not expanded
