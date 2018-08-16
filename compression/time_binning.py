@@ -33,16 +33,13 @@ def time_binning(array, factor, expand=False):
         else:
             raise RuntimeError('Compression did not work, as new and old list lengths are not related by given factor.')
 
-def time_scheme1(array, expand):
+def time_scheme1(array):
     bins = 1000
     num_fft = 1024
 
     # reshape into two axis: axis zero is time, axis 1 is frequency
     # then take the transpose, so that axis zero is frequency
-    if expand:
-        raw = array.reshape((-1,num_fft)).T
-    if not expand:
-        raw = array
+    raw = array.reshape((-1,num_fft)).T
 
     # create new array
     new = np.zeros(raw.shape)
@@ -56,11 +53,7 @@ def time_scheme1(array, expand):
     while a <= 288:
         # b = a + 1
         compress = raw[a,...]
-        if expand:
-            new[a,...] = time_binning(compress, factor1, expand=expand)
-        if not expand:
-            slice_end = len(compress) / factor1
-            new[a,0:slice_end] = time_binning(compress, factor1, expand=expand)
+        new[a,...] = time_binning(compress, factor1, expand=True)
         a += 1
     del a
 
@@ -73,11 +66,7 @@ def time_scheme1(array, expand):
     while a <= 1023:
         # b = a + 1
         compress = raw[a,...]
-        if expand:
-            new[a,...] = time_binning(compress, factor1, expand=expand)
-        if not expand:
-            slice_end = len(compress) / factor1
-            new[a,0:slice_end] = time_binning(compress, factor1, expand=expand)
+        new[a,...] = time_binning(compress, factor1, expand=True)
         a += 1
     del a
 
@@ -88,11 +77,7 @@ def time_scheme1(array, expand):
     if new1.shape == (bins, num_fft):
         # make array one dimensional again
         new2 = new1.reshape((1,-1))
-        if expand:
-            return new2
-        if not expand:
-            new3 = new2[new2 != 0]
-            return new3
+        return new2
     else:
         raise RuntimeError('Output array is the wrong shape, something went wrong.')
 
@@ -123,7 +108,7 @@ data2 = np.array(data2)
 
 # run scheme 1
 f = open(scheme1_txt, 'w+')
-np.log10(time_scheme1(data1, True)).tofile(f, '\n')
+np.log10(time_scheme1(data1)).tofile(f, '\n')
 f.close()
 
 # # run scheme 1 not expanded
