@@ -129,6 +129,55 @@ def time_scheme2(array):
     else:
         raise RuntimeError('Output array is the wrong shape, something went wrong.')
 
+def time_scheme2_ne(array):
+    """To be used with frequency binning scheme 4."""
+
+    bins = 1000
+    num_fft = 123 #the reduced number of frequency bins
+
+    # reshape into two axis: axis zero is time, axis 1 is frequency
+    # then take the transpose, so that axis zero is frequency
+    raw = array.reshape((-1,num_fft)).T
+
+    # create new array
+    new = np.zeros(raw.shape)
+
+    # don't time average in frequency bins 0 to 54
+    new[0:54,...] = raw[0:54,...]
+
+    # time average in frequency bins 54 to 66
+    factor1 = 5
+    a = 54
+    while a <= 66:
+        # b = a + 1
+        compress = raw[a,...]
+        new[a,...] = time_binning(compress, factor1, expand=False)
+        a += 1
+    del a
+
+    # don't time average in frequency bins 66 to 116
+    new[66:116,...] = raw[66:116,...]
+
+    # time average in frequency bins 116 to 123
+    factor2 = 5
+    a = 116
+    while a <= 122:
+        compress = raw[a,...]
+        new[a,...] = time_binning(compress, factor2, expand=False)
+        a += 1
+    del a
+
+    # transpose back to the original array shape
+    new1 = new.T
+
+    # ensure that the array is the correct shape
+    if new1.shape == (bins, num_fft):
+        # make array one dimensional again
+        new2 = new1.reshape((1,-1))
+        return new2
+    else:
+        raise RuntimeError('Output array is the wrong shape, something went wrong.')
+
 # IO variables
 dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/freq_binned'
 in_txt = dir + '/scheme4.txt'
@@ -154,13 +203,13 @@ for a in data_ne:
     data2.append(10 ** a)
 data2 = np.array(data2)
 
-# run scheme 1
-f = open(scheme1_txt, 'w+')
-np.log10(time_scheme2(data1)).tofile(f, '\n')
-f.close()
-
-# # run scheme 1 not expanded
-# data2 = data2.reshape((-1,125)).T
-# f = open(scheme1_ne_txt, 'w+')
-# np.log10(time_scheme1(data2, False)).tofile(f, '\n')
+# # run scheme 1
+# f = open(scheme1_txt, 'w+')
+# np.log10(time_scheme2(data1)).tofile(f, '\n')
 # f.close()
+
+# run scheme 1 not expanded
+# data2 = data2.reshape((-1,125)).T
+f = open(scheme1_ne_txt, 'w+')
+np.log10(time_scheme2_ne(data2)).tofile(f, '\n')
+f.close()
