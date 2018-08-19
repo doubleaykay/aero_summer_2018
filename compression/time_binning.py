@@ -151,7 +151,7 @@ def time_scheme2_ne(array):
     while a <= 66:
         # b = a + 1
         compress = raw[a,...]
-        new[a,...] = time_binning(compress, factor1, expand=False)
+        new[a,:200] = time_binning(compress, factor1, expand=False)
         a += 1
     del a
 
@@ -163,7 +163,7 @@ def time_scheme2_ne(array):
     a = 116
     while a <= 122:
         compress = raw[a,...]
-        new[a,...] = time_binning(compress, factor2, expand=False)
+        new[a,:200] = time_binning(compress, factor2, expand=False)
         a += 1
     del a
 
@@ -174,7 +174,8 @@ def time_scheme2_ne(array):
     if new1.shape == (bins, num_fft):
         # make array one dimensional again
         new2 = new1.reshape((1,-1))
-        return new2
+        new3 = new2[new2 != 0]
+        return new3
     else:
         raise RuntimeError('Output array is the wrong shape, something went wrong.')
 
