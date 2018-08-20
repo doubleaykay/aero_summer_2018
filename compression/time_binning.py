@@ -192,17 +192,8 @@ data = np.loadtxt(in_txt)
 # load non-expanded data from psd_txt
 data_ne = np.loadtxt(in_txt_ne)
 
-# undo log10 in data (this is temporary and needs to be fixed)
-data1 = []
-for a in data:
-    data1.append(10 ** a)
-data1 = np.array(data1)
-
-# undo log10 in data (this is temporary and needs to be fixed)
-data2 = []
-for a in data_ne:
-    data2.append(10 ** a)
-data2 = np.array(data2)
+data1 = data
+data2 = data_ne
 
 # # run scheme 1
 # f = open(scheme1_txt, 'w+')
