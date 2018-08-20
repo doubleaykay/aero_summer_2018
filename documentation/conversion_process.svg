@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   style="background-color: rgb(255, 255, 255);"
+   width="731px"
+   height="361px"
+   version="1.1"
+   content="&lt;mxfile userAgent=&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0&quot; version=&quot;9.0.6&quot; editor=&quot;www.draw.io&quot;&gt;&lt;diagram id=&quot;e3adbc09-3b80-7da8-af9a-668e430e9863&quot; name=&quot;Page-1&quot;&gt;3ZlRk5owEMc/jY/tAAHEx/M824frzE29mT46exAhvZDQEE/tp28iUYR4znVORfXFsGwS8s8vmw300H2+/CagyH7wBNOe5yTLHhr1PM/1vVD9acuqsvR9Y0gFSYxTbZiQv9gYHWOdkwSXDUfJOZWkaBpjzhiOZcMGQvBF023GabPXAlJsGSYxUNv6iyQyq6xR4NT275ikmek5cMyNF4hfU8HnzHTX89Bs/atu57BpyviXGSR8sWNCDz10LziXVSlf3mOqpd2oVtUbv3N3+9gCM/mRCpt5KuVqM3ScKCXMJRcy4ylnQB9q63A9PqxbcNRVJnOqiq4q/sZSrsxkwlxyZapbeOS8MH5Vn7qjdx/bmEo+F7Hx8gwHIFJsvNBWMkUi5jmWYqVcBKYgyVuzdTBIpFu/WhdVMNK8I1PVxBvQuWn0EYbKBSvjkDBY9zoCCepvTLS5JWpTskVGJJ4UsB7ZQq2gpoymMywkXh4WyB66qRAGVY3N8jO4LWqW3Q2C2Q7HoXMErfrXgxSykfI/idS66p0QsNpxKDhhstxp+Ukb6uny+835cl2nJXnVYj0B20f70Jwgi98RSYkE+nPcOaoo6JDV6HpY9W1Wgy5YDdusDo7Lqm+xOinUFi+AbmNs18HV7ZDYwfUQG9jEhl0Q63rN+fKi4xIbWMSqnEAng/ohxwL/mWMWr7rHtrVuwzNiixxr+BeLbWhj2+8kKTiM7f/6fxrz8BDmzyTvPuv1/JYCwTkRd63xXyzifRvx6JOIf1SmvkXRM7zqc9QjT3XW6/DZpezzfqc4edeDU2TjNOgiYvZRc8J857gRMDoUAe/yghI5T7oPg+0M/azcDiyNniB+1Q5MYbfzuuQi3pMErT0TnTOXR/ZRJ+ZMj2cKTE4ln8YZMIZp+bWw00c1aNnUQ+CS/IWXtYOWzywX5R0Me8FIWfTSL6sooCsAJSlTZYpnuindM4mB3hmz1GFhWCr9CUuf1zHii38c3d2oqXu0R/Zoj+zeMWS38/VSkqnSCoscJwQkns4UnDcnevst0z7Rg1OJbmePs83JaPpCGFOjvTnBg9Z+5O6LLv6pFLczLamS9JsV2zrl7zvfuqcS204NqM5nb05l1M4t9qgcnkpkO7eAvLhZoIOwQ6A3UWk3enAttUrebk7psPUJAu3ZGQfHEVpd1l93qyNI/QUdPfwD&lt;/diagram&gt;&lt;/mxfile&gt;"
+   id="svg140"
+   sodipodi:docname="conversion_process.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata144">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1024"
+     id="namedview142"
+     showgrid="false"
+     inkscape:zoom="1.172385"
+     inkscape:cx="437.03435"
+     inkscape:cy="133.64884"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="switch12" />
+  <defs
+     id="defs2" />
+  <g
+     transform="translate(0.5,0.5)"
+     id="g138">
+    <path
+       d="M 120 30 L 283.63 30"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path4" />
+    <path
+       d="M 288.88 30 L 281.88 33.5 L 283.63 30 L 281.88 26.5 Z"
+       fill="#000000"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path6" />
+    <rect
+       x="0"
+       y="0"
+       width="120"
+       height="60"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="none"
+       id="rect8" />
+    <g
+       transform="translate(1.5,16.5)"
+       id="g14">
+      <switch
+         id="switch12">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="116"
+           height="27"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 116px; white-space: normal; overflow-wrap: normal; text-align: center;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">LaBelle Binary Data File</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="58"
+           y="10"
+           font-size="12px"
+           id="text10"
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000">LaBelle Binary</text>
+        <text
+           x="58"
+           y="24"
+           font-size="12px"
+           style="font-size:12px;font-family:Helvetica;text-anchor:middle;fill:#000000"
+           id="text957">Data File</text>
+      </switch>
+    </g>
+    <path
+       d="M 410 30 L 543.63 30"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path16" />
+    <path
+       d="M 548.88 30 L 541.88 33.5 L 543.63 30 L 541.88 26.5 Z"
+       fill="#000000"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path18" />
+    <rect
+       x="290"
+       y="0"
+       width="120"
+       height="60"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="none"
+       id="rect20" />
+    <g
+       transform="translate(323.5,23.5)"
+       id="g26">
+      <switch
+         id="switch24">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="53"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 54px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">DigitalRF</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="27"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text22">DigitalRF</text>
+      </switch>
+    </g>
+    <path
+       d="M 610 60 L 610 120 L 126.37 120"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path28" />
+    <path
+       d="M 121.12 120 L 128.12 116.5 L 126.37 120 L 128.12 123.5 Z"
+       fill="#000000"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path30" />
+    <rect
+       x="550"
+       y="0"
+       width="120"
+       height="60"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="none"
+       id="rect32" />
+    <g
+       transform="translate(571.5,23.5)"
+       id="g38">
+      <switch
+         id="switch36">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="77"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 78px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">Spectral Data</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="39"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text34">Spectral Data</text>
+      </switch>
+    </g>
+    <path
+       d="M 60 150 L 60 210 L 173.63 210"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path40" />
+    <path
+       d="M 178.88 210 L 171.88 213.5 L 173.63 210 L 171.88 206.5 Z"
+       fill="#000000"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path42" />
+    <rect
+       x="0"
+       y="90"
+       width="120"
+       height="60"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="none"
+       id="rect44" />
+    <g
+       transform="translate(9.5,113.5)"
+       id="g50">
+      <switch
+         id="switch48">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="101"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 102px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">Bin by Frequency</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="51"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text46">Bin by Frequency</text>
+      </switch>
+    </g>
+    <path
+       d="M 300 210 L 360 210 L 373.63 210"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path52" />
+    <path
+       d="M 378.88 210 L 371.88 213.5 L 373.63 210 L 371.88 206.5 Z"
+       fill="#000000"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path54" />
+    <rect
+       x="180"
+       y="180"
+       width="120"
+       height="60"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="none"
+       id="rect56" />
+    <g
+       transform="translate(205.5,203.5)"
+       id="g62">
+      <switch
+         id="switch60">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="68"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 69px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">Bin by Time</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="34"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text58">Bin by Time</text>
+      </switch>
+    </g>
+    <path
+       d="M 500 210 L 603.63 210"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path64" />
+    <path
+       d="M 608.88 210 L 601.88 213.5 L 603.63 210 L 601.88 206.5 Z"
+       fill="#000000"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path66" />
+    <rect
+       x="380"
+       y="180"
+       width="120"
+       height="60"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="none"
+       id="rect68" />
+    <g
+       transform="translate(385.5,203.5)"
+       id="g74">
+      <switch
+         id="switch72">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="108"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 109px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">Take Log10 of Data</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="54"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text70">Take Log10 of Data</text>
+      </switch>
+    </g>
+    <path
+       d="M 670 240 L 670 330 L 586.37 330"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path76" />
+    <path
+       d="M 581.12 330 L 588.12 326.5 L 586.37 330 L 588.12 333.5 Z"
+       fill="#000000"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       pointer-events="none"
+       id="path78" />
+    <rect
+       x="610"
+       y="180"
+       width="120"
+       height="60"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="none"
+       id="rect80" />
+    <g
+       transform="translate(620.5,203.5)"
+       id="g86">
+      <switch
+         id="switch84">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="99"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 100px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">Bin by Amplitude</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="50"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text82">Bin by Amplitude</text>
+      </switch>
+    </g>
+    <rect
+       x="460"
+       y="300"
+       width="120"
+       height="60"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="none"
+       id="rect88" />
+    <g
+       transform="translate(461.5,316.5)"
+       id="g94">
+      <switch
+         id="switch92">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="116"
+           height="27"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 116px; white-space: normal; overflow-wrap: normal; text-align: center;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">Pack into Binary File</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="58"
+           y="20"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text90">Pack into Binary File</text>
+      </switch>
+    </g>
+    <g
+       transform="translate(121.5,12.5)"
+       id="g100">
+      <switch
+         id="switch98">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="161"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">convert_ant_to_channels.py</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="81"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text96">convert_ant_to_channels.py</text>
+      </switch>
+    </g>
+    <g
+       transform="translate(411.5,12.5)"
+       id="g106">
+      <switch
+         id="switch104">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="133"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">sti_intermediate_file.py</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="67"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text102">sti_intermediate_file.py</text>
+      </switch>
+    </g>
+    <g
+       transform="translate(471.5,102.5)"
+       id="g112">
+      <switch
+         id="switch110">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="126"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">frequency_binning.py</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="63"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text108">frequency_binning.py</text>
+      </switch>
+    </g>
+    <g
+       transform="translate(61.5,192.5)"
+       id="g118">
+      <switch
+         id="switch116">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="93"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">time_binning.py</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="47"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text114">time_binning.py</text>
+      </switch>
+    </g>
+    <g
+       transform="translate(311.5,192.5)"
+       id="g124">
+      <switch
+         id="switch122">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="48"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">log10.py</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="24"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text120">log10.py</text>
+      </switch>
+    </g>
+    <g
+       transform="translate(501.5,192.5)"
+       id="g130">
+      <switch
+         id="switch128">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="93"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">amp_binning.py</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="47"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text126">amp_binning.py</text>
+      </switch>
+    </g>
+    <g
+       transform="translate(591.5,312.5)"
+       id="g136">
+      <switch
+         id="switch134">
+        <foreignObject
+           style="overflow:visible;"
+           pointer-events="all"
+           width="72"
+           height="12"
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <xhtml:div
+             style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;">
+            <xhtml:div
+               style="display:inline-block;text-align:inherit;text-decoration:inherit;">to_binary.py</xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           x="36"
+           y="12"
+           fill="#000000"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           id="text132">to_binary.py</text>
+      </switch>
+    </g>
+  </g>
+</svg>
