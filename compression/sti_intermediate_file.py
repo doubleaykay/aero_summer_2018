@@ -148,11 +148,6 @@ for b in numpy.arange(bins):
 psd = numpy.array(psd)
 freq = numpy.array(freq)
 
-# frequency binning happens here
-
-# take log10 of the psd array
-psd = numpy.log10(psd)
-
 # save data to files
 psd.tofile(psd_txt, '\n')
 freq.tofile(freq_txt, '\n')
