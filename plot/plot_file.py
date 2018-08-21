@@ -27,7 +27,7 @@ file_vars = open(path_vars, 'r')
 bins, st0, sr, cfreq, num_fft = pickle.load(file_vars)
 file_vars.close()
 
-title = args.bit_depth + ' Bit Depth Plot'
+title = 'Plot'
 
 matplotlib.rc('axes', hold=False)
 
@@ -133,6 +133,8 @@ f.tight_layout()
 f.subplots_adjust(top=0.95, right=0.88)
 cax = f.add_axes([0.9, 0.12, 0.02, 0.80])
 f.colorbar(im, cax=cax)
+
+f.text(0.005, 0.005, 'test')
 
 # save and show plot
 #matplotlib.pyplot.savefig(dir_plot)
