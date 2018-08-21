@@ -1,4 +1,5 @@
 import numpy as np
+import argparse
 
 def write_bin(filename):
     if '.txt' in filename:
@@ -26,3 +27,9 @@ def read_bin(filename):
     c = np.stack((b0,b1))
 
     return c.T.reshape(-1)
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="location of file to read from")
+args = parser.parse_args()
+
+write_bin(args.input)
