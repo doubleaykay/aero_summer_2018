@@ -3,7 +3,7 @@ import argparse
 
 def write_bin(filename):
     if '.txt' in filename:
-        out = filename[:-4]
+        out = filename[:-4] + '.bin'
     else:
         raise ValueError('Based on provided filename, input is not a text file.')
 
