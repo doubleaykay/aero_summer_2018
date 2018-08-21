@@ -198,29 +198,30 @@ f = open(out_file_ne, 'w+')
 time_scheme2_ne(np.loadtxt(in_file_ne)).tofile(f, '\n')
 f.close()
 
-# IO variables
-dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/freq_binned'
-in_txt = dir + '/scheme4.txt'
-in_txt_ne = dir + '/scheme4_ne.txt'
-scheme1_txt = dir + '/time_binned/scheme1.txt'
-scheme1_ne_txt = dir + '/time_binned/scheme1_ne.txt'
-
-# load expanded data from psd_txt
-data = np.loadtxt(in_txt)
-
-# load non-expanded data from psd_txt
-data_ne = np.loadtxt(in_txt_ne)
-
-data1 = data
-data2 = data_ne
-
-# # run scheme 1
-# f = open(scheme1_txt, 'w+')
-# np.log10(time_scheme2(data1)).tofile(f, '\n')
+# # TESTING CODE
+# # IO variables
+# dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/freq_binned'
+# in_txt = dir + '/scheme4.txt'
+# in_txt_ne = dir + '/scheme4_ne.txt'
+# scheme1_txt = dir + '/time_binned/scheme1.txt'
+# scheme1_ne_txt = dir + '/time_binned/scheme1_ne.txt'
+#
+# # load expanded data from psd_txt
+# data = np.loadtxt(in_txt)
+#
+# # load non-expanded data from psd_txt
+# data_ne = np.loadtxt(in_txt_ne)
+#
+# data1 = data
+# data2 = data_ne
+#
+# # # run scheme 1
+# # f = open(scheme1_txt, 'w+')
+# # np.log10(time_scheme2(data1)).tofile(f, '\n')
+# # f.close()
+#
+# # run scheme 1 not expanded
+# # data2 = data2.reshape((-1,125)).T
+# f = open(scheme1_ne_txt, 'w+')
+# np.log10(time_scheme2_ne(data2)).tofile(f, '\n')
 # f.close()
-
-# run scheme 1 not expanded
-# data2 = data2.reshape((-1,125)).T
-f = open(scheme1_ne_txt, 'w+')
-np.log10(time_scheme2_ne(data2)).tofile(f, '\n')
-f.close()
