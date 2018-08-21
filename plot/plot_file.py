@@ -135,5 +135,5 @@ cax = f.add_axes([0.9, 0.12, 0.02, 0.80])
 f.colorbar(im, cax=cax)
 
 # save and show plot
-matplotlib.pyplot.savefig(dir_plot)
-#matplotlib.pyplot.show()
+#matplotlib.pyplot.savefig(dir_plot)
+matplotlib.pyplot.show()
