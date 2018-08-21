@@ -1,4 +1,5 @@
 import numpy as np
+import argparse
 
 # this following function is the same one used in frequency binning. I should make this into an even futher generalized function...
 
@@ -178,6 +179,24 @@ def time_scheme2_ne(array):
         return new3
     else:
         raise RuntimeError('Output array is the wrong shape, something went wrong.')
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="location of file to read from")
+parser.add_argument("-n", "--ne", help="non-expanded file to read from")
+args = parser.parse_args()
+
+in_file = args.input
+in_file_ne = args.ne
+out_file = in_file.split('.')[0] + '_freq_binned.txt'
+out_file_ne = in_file_ne.split('.')[0] + '_freq_binned_ne.txt'
+
+f = open(out_file, 'w+')
+time_scheme2(np.loadtxt(in_file)).tofile(f, '\n')
+f.close()
+
+f = open(out_file_ne, 'w+')
+time_scheme2_ne(np.loadtxt(in_file_ne)).tofile(f, '\n')
+f.close()
 
 # IO variables
 dir = '/home/anoush/Desktop/working/freq_binning/20170917-0929-0934-TLK-INT/ant1/raw/freq_binned'
