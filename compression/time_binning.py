@@ -187,8 +187,8 @@ args = parser.parse_args()
 
 in_file = args.input
 in_file_ne = args.ne
-out_file = in_file.split('.')[0] + '_freq_binned.txt'
-out_file_ne = in_file_ne.split('.')[0] + '_freq_binned_ne.txt'
+out_file = in_file.split('.')[0] + '_time2.txt'
+out_file_ne = in_file_ne.split('.')[0] + '_time2_ne.txt'
 
 f = open(out_file, 'w+')
 time_scheme2(np.loadtxt(in_file)).tofile(f, '\n')
