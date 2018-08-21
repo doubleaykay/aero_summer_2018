@@ -35,6 +35,16 @@ def bin(raw, depth, low, high):
     return np.array(data)
 
 # Begin program
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="location of file to read from")
+args = parser.parse_args()
+
+in_file = args.input
+out_file = in_file.split('.')[0] + '_amp4.txt'
+
+f = open(out_file, 'w+')
+bin(np.loadtxt(in_file), 4, -4, 4).tofile(f, '\n')
+f.close()
 
 # # TESTING PROGRAM
 # # get arguments from command line
