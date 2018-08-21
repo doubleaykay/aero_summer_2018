@@ -1,4 +1,5 @@
 import numpy as np
+import argparse
 
 def freq_binning(array, factor, expand=False):
     # check that array length is a factor of the factor provided
@@ -208,6 +209,22 @@ def scheme4(array, expand):
         a += 1
 
     return np.array(compressed)
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="location of file to read from")
+args = parser.parse_args()
+
+in_file = args.input
+out_file = in_file.split('.')[0] + '_freq_binned.txt'
+out_file_ne = in_file.split('.')[0] + '_freq_binned_ne.txt'
+
+f = open(out_file, 'w+')
+scheme4(np.loadtxt(in_file), True).tofile(f, '\n')
+f.close()
+
+f = open(out_file_ne, 'w+')
+scheme4(np.loadtxt(in_file), False).tofile(f, '\n')
+f.close()
 
 # TESTING CODE
 # # IO variables
