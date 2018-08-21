@@ -15,6 +15,7 @@ parser.add_argument("-p", "--psd", help="psd file to plot")
 parser.add_argument("-f", "--freq", help="freq file")
 parser.add_argument("-s", "--sti_times", help="sti times file")
 parser.add_argument("-v", "--vars", help="vars file")
+parser.add_argument("-t", "--text", help="text description to show on plot")
 args = parser.parse_args()
 
 psd_txt = args.psd
@@ -134,7 +135,7 @@ f.subplots_adjust(top=0.95, right=0.88)
 cax = f.add_axes([0.9, 0.12, 0.02, 0.80])
 f.colorbar(im, cax=cax)
 
-f.text(0.005, 0.005, 'test')
+f.text(0.005, 0.005, args.text)
 
 # save and show plot
 #matplotlib.pyplot.savefig(dir_plot)
