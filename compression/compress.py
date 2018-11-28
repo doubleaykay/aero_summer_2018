@@ -12,6 +12,19 @@ import argparse
 import digital_rf as drf
 import numpy as np
 
+"""
+AERO Data Compressor
+
+This script reads digital_rf data and applies the complete aero_summer_2018
+compression scheme, returning three binary files which can be read by the
+plotting tool to generate spectral plots.
+
+Outputs:
+BINARY psd.bin -- spectral data
+BINARY freq.bin -- frequency axis data
+BINARY sti_times.bin -- time axis data
+"""
+
 #get arguments from command line
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input", help="location of drf directory to read from")
