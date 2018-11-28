@@ -7,3 +7,7 @@
 # take log 10
 # apply 4-bit amplitude binning
 # store as binary
+
+import argparse
+import digital_rf as drf
+import numpy as np
