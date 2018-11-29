@@ -78,6 +78,51 @@ def binning(array, factor, expand=False):
         else:
             raise RuntimeError('Compression did not work, as new and old list lengths are not related by given factor.')
 
+def freq_scheme4(array, expand):
+    bins = 1000
+    num_fft = 1024
+
+    raw = array.reshape((-1,num_fft))
+
+    compressed = []
+
+    a = 0
+    while a <= (raw.shape[0] - 1):
+        working = raw[a,...]
+
+        for d in freq_binning(working[0:20], 20, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[20:124], 2, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[124:524], 20, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[524:616], 4, expand=expand):
+            compressed.append(d)
+        del d #2600 to 3000
+
+        for d in freq_binning(working[616:776], 20, expand=expand):
+            compressed.append(d)
+        del d
+
+        for d in freq_binning(working[776:864], 8, expand=expand):
+            compressed.append(d)
+        del d #increase to 4ish
+
+        for d in freq_binning(working[864:1024], 20, expand=expand):
+            compressed.append(d)
+        del d
+
+        del working
+        a += 1
+
+    return np.array(compressed)
+
 # BEGIN PROGRAM
 #get arguments from command line
 parser = argparse.ArgumentParser()
