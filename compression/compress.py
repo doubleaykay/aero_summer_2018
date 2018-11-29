@@ -173,6 +173,35 @@ def time_scheme2(array):
     else:
         raise RuntimeError('Output array is the wrong shape, something went wrong.')
 
+# amplitude binning function
+def amp_bin(raw, depth, low, high):
+    """Bin data into specified bit-depth.
+    :raw: array, data
+    :depth: int, bit depth (i.e. 8, 4, etc)
+    :low: int, minimum value of data
+    :high: int, maximum value of data
+    Returns a numpy array with binned data."""
+
+    max_in_depth = 2 ** depth
+    bin_range = np.linspace(low, high, max_in_depth)
+    data = []
+    for b in raw:
+        i = 0
+        while i <= (max_in_depth - 2):
+            if (bin_range[i] <= b < bin_range[i+1]):
+                data.append(i)
+                i += 1
+                break
+            elif (b <= low):
+                data.append(0)
+                break
+            elif (b >= high):
+                data.append(max_in_depth - 1)
+                break
+            else:
+                i += 1
+    return np.array(data)
+
 # BEGIN PROGRAM
 #get arguments from command line
 parser = argparse.ArgumentParser()
@@ -280,3 +309,6 @@ psd_time = time_scheme2(psd_freq)
 
 # LOG10
 psd_log10 = np.log10(psd_time)
+
+# 4-BIT AMPLITUDE BINNING
+psd_amp = amp_bin(psd_log10, 4, -4, 4)
