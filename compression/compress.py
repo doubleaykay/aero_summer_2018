@@ -223,3 +223,4 @@ write_bin(freq).tofile(dir_out + '/freq.dat')
 write_bin(sti_times).tofile(dir_out + 'sti_times.dat')
 
 # FREQUENCY BINNING (FREQ_SCHEME4)
+psd_freq = freq_scheme4(psd, True)
