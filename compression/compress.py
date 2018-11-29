@@ -333,7 +333,7 @@ psd_time = time_scheme2(psd_freq)
 psd_log10 = np.log10(psd_time)
 
 # 4-BIT AMPLITUDE BINNING
-psd_amp = amp_bin(psd_log10, 4, -4, 4)
+psd_amp = amp_bin(psd_log10[0], 4, -4, 4)
 
 # SAVE PSD_AMP TO BINARY
 write_bin(psd_amp).tofile(out_psd)
