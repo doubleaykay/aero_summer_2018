@@ -23,6 +23,11 @@ BINARY sti_times.bin -- time axis data
 # FUNCTIONS
 # split array in half
 def split_list(a_list):
+    """
+    Splits a list in half.
+    :a_list: list, input
+    Returns two lists, first/second halves
+    """
     half = len(a_list)/2
     return a_list[:half], a_list[half:]
 
@@ -43,6 +48,12 @@ def write_bin(raw):
 
 # binning function for frequency and time binning
 def binning(array, factor, expand=False):
+    """
+    Takes and array and averages it by a factor.
+    :array: list, raw
+    :factor: int, factor to average array by
+    :expand: bool, whether or not to repeat averaged array factor times
+    """
     # check that array length is a factor of the factor provided
     if not (len(array) % factor) == 0:
         raise ValueError('Length of array is not a multiple of ' + str(factor) + '!')
@@ -74,9 +85,16 @@ def binning(array, factor, expand=False):
             raise RuntimeError('Compression did not work, as new and old list lengths are not related by given factor.')
 
 # frequency scheme4 function
-def freq_scheme4(array, expand):
-    bins = 1000
-    num_fft = 1024
+def freq_scheme4(array, expand, bins, num_fft):
+    """
+    Applys frequency binning to PSD data for specific, hardcoded frequencies.
+    :array: numpy ndarray, raw data
+    :expand: bool, whether or not to repeat averaged sections
+    :bins: int, number of spectra
+    :num_fft: int, number of data points in spectra
+    """
+    # bins = 1000
+    # num_fft = 1024
 
     raw = array.reshape((-1,num_fft))
 
@@ -120,9 +138,15 @@ def freq_scheme4(array, expand):
     return np.array(compressed)
 
 # time scheme2 function
-def time_scheme2(array):
-    bins = 1000
-    num_fft = 1024
+def time_scheme2(array, bins, num_fft):
+    """
+    Applies time binning to PSD data for specific, hardcoded time ranges
+    :array: numpy ndarray, raw data
+    :bins: int, number of spectra
+    :num_fft: int, number of data points in spectra
+    """
+    # bins = 1000
+    # num_fft = 1024
 
     # reshape into two axis: axis zero is time, axis 1 is frequency
     # then take the transpose, so that axis zero is frequency
@@ -170,12 +194,14 @@ def time_scheme2(array):
 
 # amplitude binning function
 def amp_bin(raw, depth, low, high):
-    """Bin data into specified bit-depth.
+    """
+    Bin data into specified bit-depth.
     :raw: array, data
     :depth: int, bit depth (i.e. 8, 4, etc)
     :low: int, minimum value of data
     :high: int, maximum value of data
-    Returns a numpy array with binned data."""
+    Returns a numpy array with binned data.
+    """
 
     max_in_depth = 2 ** depth
     bin_range = np.linspace(low, high, max_in_depth)
@@ -217,7 +243,6 @@ out_sti_times = dir_out + '/sti_times.dat'
 out_psd = dir_out + '/psd.dat'
 
 # ensure outputs exist
-# ensure outputs all exist
 if not os.path.exists(dir_out):
     os.makedirs(dir_out)
 
@@ -241,11 +266,10 @@ if not Path(out_psd).is_file():
 
 # READ DIGITAL_RF DATA AND CONVERT INTO SPECTRAL DATA
 # processing variables
-bins = args.bins
+bins = args.bins # def 1000
 frames = 1
-num_fft = args.num_fft
-integration = 1
-decimation = 1
+num_fft = args.num_fft # def 2048
+integration = decimation = 1
 
 # open digital RF path
 dio = drf.DigitalRFReader(dir_in)
@@ -301,7 +325,8 @@ for b in np.arange(bins):
 
     try:
         psd_data, freq_axis = matplotlib.mlab.psd(
-            data, NFFT=num_fft, Fs=float(sample_freq), detrend=detrend_fn, scale_by_freq=False)
+            data, NFFT=num_fft, Fs=float(sample_freq), detrend=detrend_fn,
+            scale_by_freq=False)
     except:
         traceback.print_exc(file=sys.stdout)
 
@@ -324,10 +349,10 @@ write_bin(freq).tofile(out_freq)
 write_bin(sti_times).tofile(out_sti_times)
 
 # FREQUENCY BINNING (FREQ_SCHEME4)
-psd_freq = freq_scheme4(psd, True)
+psd_freq = freq_scheme4(psd, True, bins, (num_fft/2))
 
 # TIME BINNING (TIME_SCHEME2)
-psd_time = time_scheme2(psd_freq)
+psd_time = time_scheme2(psd_freq, bins, (num_fft/2))
 
 # LOG10
 psd_log10 = np.log10(psd_time)
