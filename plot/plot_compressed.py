@@ -4,7 +4,6 @@ import matplotlib.gridspec
 import matplotlib.mlab
 import matplotlib.pyplot
 import numpy as np
-# import numpy.fft
 
 import pickle
 import argparse
@@ -19,8 +18,8 @@ def read_bin(filename):
 
 # get arguments from command line
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", "--input", help="location of drf directory to read from")
-parser.add_argument("-c", "--channel", help="drf channel to read from")
+parser.add_argument("-i", "--input", help="location directory to read from")
+parser.add_argument("-c", "--channel", help="channel to read from")
 parser.add_argument("-t", "--title", help="plot title")
 parser.add_argument("-d", "--description", help="description to show on plot")
 args = parser.parse_args()
