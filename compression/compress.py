@@ -4,6 +4,9 @@ import numpy as np
 
 import matplotlib.mlab
 
+import os
+from pathlib2 import Path
+
 """
 AERO Data Compressor
 
