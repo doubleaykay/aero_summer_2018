@@ -359,8 +359,9 @@ write_bin(freq).tofile(out_freq)
 write_bin(sti_times).tofile(out_sti_times)
 
 # save vars for plotting later
+file_out_vars = open(out_vars, 'rw+')
 vars = [bins, st0, sr, cfreq, num_fft]
-pickle.dump(vars, out_vars)
+pickle.dump(vars, file_out_vars)
 
 # FREQUENCY BINNING (FREQ_SCHEME4)
 psd_freq = freq_scheme4(psd, True, bins, (num_fft/2))
