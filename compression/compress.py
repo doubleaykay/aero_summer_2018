@@ -203,12 +203,12 @@ parser.add_argument("-b", "--bins", nargs='?', const=1000, type=int, default=100
 args = parser.parse_args()
 
 # IO variables
+channel = args.channel
 dir_in = args.input
 dir_out = args.output + '/' + channel
 
 # READ DIGITAL_RF DATA AND CONVERT INTO SPECTRAL DATA
 # processing variables
-channel = args.channel
 bins = args.bins
 frames = 1
 num_fft = args.num_fft
