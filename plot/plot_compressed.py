@@ -3,29 +3,37 @@ import time
 import matplotlib.gridspec
 import matplotlib.mlab
 import matplotlib.pyplot
-import numpy
-import numpy.fft
+import numpy as np
+# import numpy.fft
 
 import pickle
 import argparse
 
+def read_bin(filename):
+    a = np.fromfile(filename, dtype='i1')
+    b0 = np.bitwise_and(a,15)
+    b1 = np.bitwise_and(a,15<<4) >> 4
+    c = np.stack((b0,b1))
+
+    return c.T.reshape(-1)
+
 # get arguments from command line
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--psd", help="psd file to plot")
-parser.add_argument("-f", "--freq", help="freq file")
-parser.add_argument("-s", "--sti_times", help="sti times file")
-parser.add_argument("-v", "--vars", help="vars file")
+parser.add_argument("-i", "--input", help="location of drf directory to read from")
+parser.add_argument("-c", "--channel", help="drf channel to read from")
 parser.add_argument("-t", "--title", help="plot title")
 parser.add_argument("-d", "--description", help="description to show on plot")
 args = parser.parse_args()
 
-psd_txt = args.psd
-freq_txt = args.freq
-sti_times_txt = args.sti_times
-path_vars = args.vars
+dir = args.input + '/' + args.channel
+
+file_freq = dir + '/freq.dat'
+file_sti_times = dir + '/sti_times.dat'
+file_psd = dir + '/psd.dat'
+file_vars = dir + '/vars'
 
 # load vars from intermediate file processing script via pickle
-file_vars = open(path_vars, 'r')
+file_vars = open(file_vars, 'r')
 bins, st0, sr, cfreq, num_fft = pickle.load(file_vars)
 file_vars.close()
 
@@ -34,7 +42,7 @@ title = args.title
 matplotlib.rc('axes', hold=False)
 
 # Figure setup
-f = matplotlib.pyplot.figure(figsize=(7, numpy.min([numpy.max([4, 1]), 7])), dpi=128)
+f = matplotlib.pyplot.figure(figsize=(7, np.min([np.max([4, 1]), 7])), dpi=128)
 
 gridspec = matplotlib.gridspec.GridSpec(1, 1)
 
@@ -44,30 +52,28 @@ ax = f.add_subplot(gridspec[0])
 vmin = 0
 vmax = 0
 
-# read intermediate files
-sti_psd_data = numpy.loadtxt(psd_txt)
+# load data
+sti_psd_data = read_bin(file_psd)
 sti_psd_data = 10 * sti_psd_data.reshape((-1, (num_fft / 2))).T
-freq_axis = numpy.loadtxt(freq_txt)
+
+freq_axis = read_bin(file_freq)
 freq_axis = freq_axis[:1024]
 
-# load sti_times from pickle
-file_sti_times = open(sti_times_txt, 'rw+')
-sti_times = pickle.load(file_sti_times)
-file_sti_times.close()
+sti_times = read_bin(file_sti_times)
 
-for p in numpy.arange(1):
+for p in np.arange(1):
     # determine image x-y extent
     extent = (
         0,
         bins,
-        numpy.min(freq_axis) / 1e3,
-        numpy.max(freq_axis) / 1e3,
+        np.min(freq_axis) / 1e3,
+        np.max(freq_axis) / 1e3,
     )
 
     # determine image color extent (5th to 95th percentile)
     Pss = sti_psd_data
-    vmin = numpy.real(numpy.percentile(Pss, 5))
-    vmax = numpy.real(numpy.percentile(Pss, 95))
+    vmin = np.real(np.percentile(Pss, 5))
+    vmax = np.real(np.percentile(Pss, 95))
 
     # plot data
     im = ax.imshow(sti_psd_data, cmap='gray', origin='lower', extent=extent, interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
@@ -79,7 +85,7 @@ for p in numpy.arange(1):
     ymax = 5000
 
     # plot dates
-    tick_spacing = numpy.arange(bins / 8, bins, bins / 8)
+    tick_spacing = np.arange(bins / 8, bins, bins / 8)
     ax.set_xticks(tick_spacing)
     tick_labels = []
 
@@ -89,7 +95,7 @@ for p in numpy.arange(1):
        if tick_time == 0:
            tick_string = ''
        else:
-           gm_tick_time = time.gmtime(numpy.real(tick_time))
+           gm_tick_time = time.gmtime(np.real(tick_time))
            tick_string = '%02d:%02d:%02d' % (gm_tick_time[3], gm_tick_time[4], gm_tick_time[5])
            tick_labels.append(tick_string)
 
