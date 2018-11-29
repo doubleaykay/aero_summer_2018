@@ -31,6 +31,7 @@ def split_list(a_list):
     half = len(a_list)/2
     return a_list[:half], a_list[half:]
 
+# binary packing function
 def write_bin(raw):
     """
     Returns a numpy array that is binary packed.
@@ -44,6 +45,38 @@ def write_bin(raw):
     c = np.bitwise_or(b[:,0], b[:,1]).astype('i1')
 
     return c
+
+# binning function for frequency and time binning
+def binning(array, factor, expand=False):
+    # check that array length is a factor of the factor provided
+    if not (len(array) % factor) == 0:
+        raise ValueError('Length of array is not a multiple of ' + str(factor) + '!')
+
+    # bin
+    compressed = []
+    a = 0
+    while a <= (len(array) - factor):
+        b = (a + factor)
+        if expand:
+            i = 1
+            while i <= factor:
+                compressed.append(np.average(array[a:b]))
+                i += 1
+        if not expand:
+            compressed.append(np.average(array[a:b]))
+        a += factor
+
+    # check new length as opposed to original array; return array if okay to do so
+    if expand:
+        if len(compressed) == len(array):
+            return compressed
+        else:
+            raise RuntimeError('Compression did not work, as new list is not as long as original list.')
+    if not expand:
+        if float(len(array)) / float(len(compressed)) == factor:
+            return compressed
+        else:
+            raise RuntimeError('Compression did not work, as new and old list lengths are not related by given factor.')
 
 # BEGIN PROGRAM
 #get arguments from command line
@@ -144,4 +177,4 @@ freq = np.array(freq)
 write_bin(freq).tofile(dir_out + '/freq.dat')
 write_bin(sti_times).tofile(dir_out + 'sti_times.dat')
 
-# 
+# FREQUENCY BINNING (FREQ_SCHEME4)
