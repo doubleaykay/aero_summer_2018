@@ -7,6 +7,8 @@ import matplotlib.mlab
 import os
 from pathlib2 import Path
 
+import pickle
+
 """
 AERO Data Compressor
 
@@ -243,7 +245,7 @@ dir_out = args.output + '/' + channel
 out_freq = dir_out + '/freq.dat'
 out_sti_times = dir_out + '/sti_times.dat'
 out_psd = dir_out + '/psd.dat'
-out_vars = dir_out + '/vars.dat'
+out_vars = dir_out + '/vars'
 
 # ensure outputs exist
 if not os.path.exists(dir_out):
@@ -357,7 +359,8 @@ write_bin(freq).tofile(out_freq)
 write_bin(sti_times).tofile(out_sti_times)
 
 # save vars for plotting later
-np.array([bins, st0, sr, cfreq, num_fft]).tofile(out_vars)
+vars = [bins, st0, sr, cfreq, num_fft]
+pickle.dump(vars, out_vars)
 
 # FREQUENCY BINNING (FREQ_SCHEME4)
 psd_freq = freq_scheme4(psd, True, bins, (num_fft/2))
