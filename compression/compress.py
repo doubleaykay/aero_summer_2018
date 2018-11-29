@@ -31,6 +31,20 @@ def split_list(a_list):
     half = len(a_list)/2
     return a_list[:half], a_list[half:]
 
+def write_bin(raw):
+    """
+    Returns a numpy array that is binary packed.
+    :raw: numpy array of raw data
+    """
+    a = raw.astype('i1')
+    b = a.reshape((-1,2))
+
+    b[:,1] = b[:,1] << 4
+
+    c = np.bitwise_or(b[:,0], b[:,1]).astype('i1')
+
+    return c
+
 # BEGIN PROGRAM
 #get arguments from command line
 parser = argparse.ArgumentParser()
