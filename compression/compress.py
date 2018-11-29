@@ -2,6 +2,8 @@ import argparse
 import digital_rf as drf
 import numpy as np
 
+import matplotlib.mlab
+
 """
 AERO Data Compressor
 
