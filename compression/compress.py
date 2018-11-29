@@ -299,7 +299,7 @@ freq = np.array(freq)
 
 # save freq and sti_times as binary files
 write_bin(freq).tofile(dir_out + '/freq.dat')
-write_bin(sti_times).tofile(dir_out + 'sti_times.dat')
+write_bin(sti_times).tofile(dir_out + '/sti_times.dat')
 
 # FREQUENCY BINNING (FREQ_SCHEME4)
 psd_freq = freq_scheme4(psd, True)
@@ -312,3 +312,6 @@ psd_log10 = np.log10(psd_time)
 
 # 4-BIT AMPLITUDE BINNING
 psd_amp = amp_bin(psd_log10, 4, -4, 4)
+
+# SAVE PSD_AMP TO BINARY
+write_bin(psd_amp).tofile(dir_out + '/psd.dat')
