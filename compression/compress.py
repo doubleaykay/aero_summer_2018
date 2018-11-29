@@ -277,3 +277,6 @@ psd_freq = freq_scheme4(psd, True)
 
 # TIME BINNING (TIME_SCHEME2)
 psd_time = time_scheme2(psd_freq)
+
+# LOG10
+psd_log10 = np.log10(psd_time)
