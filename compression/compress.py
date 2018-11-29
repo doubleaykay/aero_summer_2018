@@ -141,3 +141,7 @@ psd = np.array(psd)
 freq = np.array(freq)
 
 # save freq and sti_times as binary files
+write_bin(freq).tofile(dir_out + '/freq.dat')
+write_bin(sti_times).tofile(dir_out + 'sti_times.dat')
+
+# 
