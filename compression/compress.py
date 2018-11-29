@@ -209,6 +209,33 @@ channel = args.channel
 dir_in = args.input
 dir_out = args.output + '/' + channel
 
+out_freq = dir_out + '/freq.dat'
+out_sti_times = dir_out + '/sti_times.dat'
+out_psd = dir_out + '/psd.dat'
+
+# ensure outputs exist
+# ensure outputs all exist
+if not os.path.exists(dir_out):
+    os.makedirs(dir_out)
+
+if not os.path.exists(dir_out):
+    os.makedirs(dir_out)
+
+if not Path(out_freq).is_file():
+    f = open(out_freq, 'w+')
+    f.close()
+    del f
+
+if not Path(out_sti_times).is_file():
+    f = open(out_sti_times, 'w+')
+    f.close()
+    del f
+
+if not Path(out_psd).is_file():
+    f = open(out_psd, 'w+')
+    f.close()
+    del f
+
 # READ DIGITAL_RF DATA AND CONVERT INTO SPECTRAL DATA
 # processing variables
 bins = args.bins
@@ -290,8 +317,8 @@ psd = np.array(psd)
 freq = np.array(freq)
 
 # save freq and sti_times as binary files
-write_bin(freq).tofile(dir_out + '/freq.dat')
-write_bin(sti_times).tofile(dir_out + '/sti_times.dat')
+write_bin(freq).tofile(out_freq)
+write_bin(sti_times).tofile(out_sti_times)
 
 # FREQUENCY BINNING (FREQ_SCHEME4)
 psd_freq = freq_scheme4(psd, True)
@@ -306,4 +333,4 @@ psd_log10 = np.log10(psd_time)
 psd_amp = amp_bin(psd_log10, 4, -4, 4)
 
 # SAVE PSD_AMP TO BINARY
-write_bin(psd_amp).tofile(dir_out + '/psd.dat')
+write_bin(psd_amp).tofile(out_psd)
