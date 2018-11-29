@@ -179,7 +179,7 @@ class DataPlotter(object):
                 start_sample += stripe_stride
 
             # freq_axis = freq_axis + 1000000
-            
+
             # Now Plot the Data
             ax = self.subplots[p]
 
@@ -187,28 +187,19 @@ class DataPlotter(object):
             extent = (
                 0,
                 self.control.bins,
-                numpy.min(freq_axis) / 1e3,
+                numpy.median(freq_axis) / 1e3,
                 numpy.max(freq_axis) / 1e3,
             )
 
             # determine image color extent in log scale units
             Pss = sti_psd_data
-            vmin = numpy.real(numpy.median(Pss) - 6.0)
-            vmax = numpy.real(numpy.median(
-                Pss) + (numpy.max(Pss) - numpy.median(Pss)) * 0.61803398875 + 50.0)
+            vmin = numpy.real(numpy.percentile(Pss, 5))
+            vmax = numpy.real(numpy.percentile(Pss, 95))
 
-            if self.control.zaxis:
-                vmin = int(string.split(self.control.zaxis, ':')[0])
-                vmax = int(string.split(self.control.zaxis, ':')[1])
-            else:
-                vmin = numpy.real(numpy.median(Pss) - 6.0)
-                vmax = numpy.real(numpy.median(
-                    Pss) + (numpy.max(Pss) - numpy.median(Pss)) * 0.61803398875 + 50.0)
-
-            im = ax.imshow(sti_psd_data, cmap='gray', origin='lower', extent=extent,
+            im = ax.imshow(sti_psd_data[(self.control.num_fft/2):], cmap='gray', origin='lower', extent=extent,
                            interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
 
-            ax.set_ylabel('f (kHz)', fontsize=8)
+            ax.set_ylabel('f (Hz)', fontsize=8)
 
             # plot dates
 
