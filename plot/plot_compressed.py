@@ -56,10 +56,10 @@ vmax = 0
 sti_psd_data = read_bin(file_psd)
 sti_psd_data = 10 * sti_psd_data.reshape((-1, (num_fft / 2))).T
 
-freq_axis = read_bin(file_freq)
+freq_axis = np.fromfile(file_freq)
 freq_axis = freq_axis[:1024]
 
-sti_times = read_bin(file_sti_times)
+sti_times = np.fromfile(file_sti_times)
 
 for p in np.arange(1):
     # determine image x-y extent

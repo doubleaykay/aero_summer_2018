@@ -355,8 +355,8 @@ psd = np.array(psd)
 freq = np.array(freq)
 
 # save freq and sti_times as binary files
-write_bin(freq).tofile(out_freq)
-write_bin(sti_times).tofile(out_sti_times)
+freq.tofile(out_freq)
+sti_times.tofile(out_sti_times)
 
 # save vars for plotting later
 file_out_vars = open(out_vars, 'rw+')
