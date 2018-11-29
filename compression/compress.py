@@ -18,6 +18,8 @@ Outputs:
 BINARY psd.bin -- spectral data
 BINARY freq.bin -- frequency axis data
 BINARY sti_times.bin -- time axis data
+
+Written by Anoush Khan, summer/winter 2018.
 """
 
 # FUNCTIONS
