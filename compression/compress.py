@@ -362,6 +362,7 @@ write_bin(sti_times).tofile(out_sti_times)
 file_out_vars = open(out_vars, 'rw+')
 vars = [bins, st0, sr, cfreq, num_fft]
 pickle.dump(vars, file_out_vars)
+file_out_vars.close()
 
 # FREQUENCY BINNING (FREQ_SCHEME4)
 psd_freq = freq_scheme4(psd, True, bins, (num_fft/2))
