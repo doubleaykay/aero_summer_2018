@@ -235,6 +235,10 @@ parser.add_argument("-o", "--output", help="location of directory to output to")
 parser.add_argument("-n", "--num_fft", nargs='?', const=2048, type=int, default=2048, help="number of frequency bins (i.e. number of data points in spectra)")
 parser.add_argument("-c", "--channel", help="drf channel to read from")
 parser.add_argument("-b", "--bins", nargs='?', const=1000, type=int, default=1000, help="number of time bins (i.e. number of spectra)")
+parser.add_argument("-s", "--start", dest="start", default=None,
+                  help="Use the provided start time instead of the first time in the data. format is ISO8601: 2015-11-01T15:24:00Z")
+parser.add_argument("-e", "--end", dest="end", default=None,
+                  help="Use the provided end time for the plot. format is ISO8601: 2015-11-01T15:24:00Z")
 args = parser.parse_args()
 
 # IO variables
@@ -289,8 +293,21 @@ sr = dio.get_properties(channel)['samples_per_second']
 
 # get data bounds
 b = dio.get_bounds(channel)
-st0 = int(b[0])
-et0 = int(b[1])
+if args.start:
+    dtst0 = dateutil.parser.parse(args.start)
+    st0 = (dtst0 - datetime.datetime(1970, 1,
+                                     1, tzinfo=pytz.utc)).total_seconds()
+    st0 = int(st0 * sr)
+else:
+    st0 = int(b[0])
+
+if args.end:
+    dtst0 = dateutil.parser.parse(args.end)
+    et0 = (dtst0 - datetime.datetime(1970, 1,
+                                     1, tzinfo=pytz.utc)).total_seconds()
+    et0 = int(et0 * sr)
+else:
+    et0 = int(b[1])
 
 # get metadata
 mdt = dio.read_metadata(st0, et0, channel)
