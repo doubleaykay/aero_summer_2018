@@ -222,7 +222,7 @@ def time_scheme2_ne(array):
     while a <= 66:
         # b = a + 1
         compress = raw[a,...]
-        new[a,:200] = time_binning(compress, factor1, expand=False)
+        new[a,:200] = binning(compress, factor1, expand=False)
         a += 1
     del a
 
@@ -234,7 +234,7 @@ def time_scheme2_ne(array):
     a = 116
     while a <= 122:
         compress = raw[a,...]
-        new[a,:200] = time_binning(compress, factor2, expand=False)
+        new[a,:200] = binning(compress, factor2, expand=False)
         a += 1
     del a
 
@@ -443,7 +443,7 @@ file_out_vars.close()
 psd_freq = freq_scheme4(psd, args.reduce, bins, (num_fft/2))
 
 # TIME BINNING (TIME_SCHEME2)
-if args.reduce:
+if ~args.reduce:
     psd_time = time_scheme2_ne(psd_freq)
 else:
     psd_time = time_scheme2(psd_freq, bins, (num_fft/2))
@@ -452,7 +452,10 @@ else:
 psd_log10 = np.log10(psd_time)
 
 # 4-BIT AMPLITUDE BINNING
-psd_amp = amp_bin(psd_log10[0], 4, -4, 4)
+if ~args.reduce:
+    psd_amp = amp_bin(psd_log10, 4, -4, 4)
+else:
+    psd_amp = amp_bin(psd_log10[0], 4, -4, 4)
 
 # SAVE PSD_AMP TO BINARY
 write_bin(psd_amp).tofile(out_psd)
