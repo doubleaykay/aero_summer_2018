@@ -309,6 +309,9 @@ if args.end:
 else:
     et0 = int(b[1])
 
+# print seconds of data to be processed
+print((et0 - st0)/sr)
+
 # get metadata
 mdt = dio.read_metadata(st0, et0, channel)
 try:
