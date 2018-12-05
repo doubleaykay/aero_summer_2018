@@ -200,6 +200,56 @@ def time_scheme2(array, bins, num_fft):
     else:
         raise RuntimeError('Output array is the wrong shape, something went wrong.')
 
+def time_scheme2_ne(array):
+    """To be used with frequency binning scheme 4."""
+
+    bins = 1000
+    num_fft = 123 #the reduced number of frequency bins
+
+    # reshape into two axis: axis zero is time, axis 1 is frequency
+    # then take the transpose, so that axis zero is frequency
+    raw = array.reshape((-1,num_fft)).T
+
+    # create new array
+    new = np.zeros(raw.shape)
+
+    # don't time average in frequency bins 0 to 54
+    new[0:54,...] = raw[0:54,...]
+
+    # time average in frequency bins 54 to 66
+    factor1 = 5
+    a = 54
+    while a <= 66:
+        # b = a + 1
+        compress = raw[a,...]
+        new[a,:200] = time_binning(compress, factor1, expand=False)
+        a += 1
+    del a
+
+    # don't time average in frequency bins 66 to 116
+    new[66:116,...] = raw[66:116,...]
+
+    # time average in frequency bins 116 to 123
+    factor2 = 5
+    a = 116
+    while a <= 122:
+        compress = raw[a,...]
+        new[a,:200] = time_binning(compress, factor2, expand=False)
+        a += 1
+    del a
+
+    # transpose back to the original array shape
+    new1 = new.T
+
+    # ensure that the array is the correct shape
+    if new1.shape == (bins, num_fft):
+        # make array one dimensional again
+        new2 = new1.reshape((1,-1))
+        new3 = new2[new2 != 0]
+        return new3
+    else:
+        raise RuntimeError('Output array is the wrong shape, something went wrong.')
+
 # amplitude binning function
 def amp_bin(raw, depth, low, high):
     """
@@ -243,6 +293,7 @@ parser.add_argument("-s", "--start", dest="start", default=None,
                   help="Use the provided start time instead of the first time in the data. format is ISO8601: 2015-11-01T15:24:00Z")
 parser.add_argument("-e", "--end", dest="end", default=None,
                   help="Use the provided end time for the plot. format is ISO8601: 2015-11-01T15:24:00Z")
+parser.add_argument('-r', '--reduce', action='store_false', help='use this flag to suppress expanding the compressed data')
 args = parser.parse_args()
 
 # IO variables
@@ -389,10 +440,13 @@ pickle.dump(vars, file_out_vars)
 file_out_vars.close()
 
 # FREQUENCY BINNING (FREQ_SCHEME4)
-psd_freq = freq_scheme4(psd, True, bins, (num_fft/2))
+psd_freq = freq_scheme4(psd, args.reduce, bins, (num_fft/2))
 
 # TIME BINNING (TIME_SCHEME2)
-psd_time = time_scheme2(psd_freq, bins, (num_fft/2))
+if args.reduce:
+    psd_time = time_scheme2_ne(psd_freq)
+else:
+    psd_time = time_scheme2(psd_freq, bins, (num_fft/2))
 
 # LOG10
 psd_log10 = np.log10(psd_time)
