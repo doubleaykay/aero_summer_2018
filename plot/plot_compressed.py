@@ -70,7 +70,7 @@ for p in np.arange(1):
     )
 
     # determine image color extent (5th to 95th percentile)
-    Pss = sti_psd_data
+    Pss = sti_psd_data[np.nonzero(sti_psd_data)]
     vmin = np.real(np.percentile(Pss, 5))
     vmax = np.real(np.percentile(Pss, 95))
 
