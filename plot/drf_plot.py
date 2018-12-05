@@ -192,7 +192,7 @@ class DataPlotter(object):
             )
 
             # determine image color extent in log scale units
-            Pss = sti_psd_data
+            Pss = sti_psd_data[numpy.nonzero(sti_psd_data)]
             vmin = numpy.real(numpy.percentile(Pss, 5))
             vmax = numpy.real(numpy.percentile(Pss, 95))
 
@@ -273,7 +273,7 @@ class DataPlotter(object):
             if ext == '':
                 ext = '.png'
             print "Save plot as {}".format(fname+ext)
-            matplotlib.pyplot.savefig(fname+ext)
+            matplotlib.pyplot.savefig(fname+ext, dpi=300)
         if self.control.appear or not self.control.outname:
             print "Show plot"
             matplotlib.pyplot.show()
