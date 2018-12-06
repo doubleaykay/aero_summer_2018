@@ -1,6 +1,7 @@
 import digital_rf as drf
 import numpy as np
 import argparse
+import matplotlib.mlab
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input", help="location of drf directory to read from")
@@ -11,6 +12,9 @@ args = parser.parse_args()
 channel = args.channel
 num_fft = 2048
 bins = 1000
+frames = 1
+integration = 1
+decimation = 1
 
 # IO vars
 dir_in = args.input
@@ -59,9 +63,9 @@ def split_list(a_list):
     return a_list[:half], a_list[half:]
 
 #create sti_times array for use when plotting
-sti_times = numpy.zeros([bins], numpy.complex128)
+sti_times = np.zeros([bins], np.complex128)
 
-for b in numpy.arange(bins):
+for b in np.arange(bins):
     data = dio.read_vector(start_sample, samples_per_stripe, channel)
 
     if decimation > 1:
@@ -88,7 +92,7 @@ for b in numpy.arange(bins):
 
     start_sample += stripe_stride
 
-data = numpy.array(psd).astype('float64')
+data = np.array(psd).astype('float64')
 
 # calculate structure
 data = data - data.mean()
@@ -96,4 +100,4 @@ diffs = data[1:] - data[:-1]
 structure = diffs.sum() / diffs.size
 
 # print results
-print(dir_in.split('/')[end] + ': ' + str(structure))
+print(dir_in.split('/')[-2] + ': ' + str(structure))
