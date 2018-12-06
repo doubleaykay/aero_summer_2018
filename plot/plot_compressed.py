@@ -22,6 +22,7 @@ parser.add_argument("-i", "--input", help="location directory to read from")
 parser.add_argument("-c", "--channel", help="channel to read from")
 parser.add_argument("-t", "--title", help="plot title")
 parser.add_argument("-d", "--description", help="description to show on plot")
+parser.add_option("-o", "--outname", dest="outname", default=None, type=str, help="Name of file that figure will be saved under.")
 args = parser.parse_args()
 
 dir = args.input + '/' + args.channel
@@ -36,7 +37,15 @@ file_vars = open(file_vars, 'r')
 bins, st0, sr, cfreq, num_fft = pickle.load(file_vars)
 file_vars.close()
 
-title = args.title
+if args.title == None:
+    title = args.input.split('/')[-2]
+else:
+    title = args.title
+
+if args.description == None:
+    description = 'Freq Binning 4, Time Binning 2, 4-big Amp Binning'
+else:
+    description = args.description
 
 matplotlib.rc('axes', hold=False)
 
@@ -141,7 +150,13 @@ f.subplots_adjust(top=0.95, right=0.88)
 cax = f.add_axes([0.9, 0.12, 0.02, 0.80])
 f.colorbar(im, cax=cax)
 
-f.text(0.005, 0.005, args.description, size='x-large')
+f.text(0.005, 0.005, description, size='x-large')
+
+if args.outname:
+    fname, ext = os.path.splitext(args.outname)
+    if ext == '':
+        ext = '.png'
+    matplotlib.pyplot.savefig(fname+ext, dpi=300)
 
 # save and show plot
 #matplotlib.pyplot.savefig(dir_plot)
