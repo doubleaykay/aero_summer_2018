@@ -1,0 +1,99 @@
+import digital_rf as drf
+import numpy as np
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="location of drf directory to read from")
+parser.add_argument("-c", "--channel", help="drf channel to read from")
+args = parser.parse_args()
+
+# processing vars
+channel = args.channel
+num_fft = 2048
+bins = 1000
+
+# IO vars
+dir_in = args.input
+
+# open digital RF path
+dio = drf.DigitalRFReader(dir_in)
+
+# get sampling rate
+sr = dio.get_properties(channel)['samples_per_second']
+
+# get data bounds
+b = dio.get_bounds(channel)
+st0 = int(b[0])
+et0 = int(b[1])
+
+# get metadata
+mdt = dio.read_metadata(st0, et0, channel)
+try:
+    md = mdt[mdt.keys()[0]]
+    cfreq = md['center_frequencies'].ravel()
+except (IndexError, KeyError):
+    cfreq = 0.0
+
+# calculations for processing
+blocks = bins * frames
+
+samples_per_stripe = num_fft * integration * decimation
+total_samples = blocks * samples_per_stripe
+
+if total_samples > (et0 - st0):
+    print 'Insufficient samples for %d samples per stripe and %d blocks between %ld and %ld' % (samples_per_stripe, blocks, st0, et0)
+
+stripe_stride = (et0 - st0) / blocks
+
+bin_stride = stripe_stride / bins
+
+start_sample = st0
+
+#psd and freq arrays
+psd = []
+freq = []
+
+#function to split array in half
+def split_list(a_list):
+    half = len(a_list)/2
+    return a_list[:half], a_list[half:]
+
+#create sti_times array for use when plotting
+sti_times = numpy.zeros([bins], numpy.complex128)
+
+for b in numpy.arange(bins):
+    data = dio.read_vector(start_sample, samples_per_stripe, channel)
+
+    if decimation > 1:
+        data = scipy.signal.decimate(data, decimation, ftype='fir')
+        sample_freq = sr / decimation
+    else:
+        sample_freq = sr
+
+    detrend_fn = matplotlib.mlab.detrend_none
+
+    try:
+        psd_data, freq_axis = matplotlib.mlab.psd(
+            data, NFFT=num_fft, Fs=float(sample_freq), detrend=detrend_fn, scale_by_freq=False)
+    except:
+        traceback.print_exc(file=sys.stdout)
+
+    #append only second half of processed data
+    psd1, psd2 = split_list(psd_data)
+    freq1, freq2 = split_list(freq_axis)
+    psd.append(psd2)
+    freq.append(freq2)
+
+    sti_times[b] = start_sample / sr
+
+    start_sample += stripe_stride
+
+data = numpy.array(psd).astype('float64')
+
+# calculate structure
+data = data - data.mean()
+diffs = data[1:] - data[:-1]
+structure = diffs.sum() / diffs.size
+
+# print results
+print(dir_in.split('/')[end] + ': ' + str(structure))
