@@ -8,6 +8,8 @@ import numpy as np
 import pickle
 import argparse
 
+import os
+
 def read_bin(filename):
     a = np.fromfile(filename, dtype='i1')
     b0 = np.bitwise_and(a,15)
@@ -22,7 +24,7 @@ parser.add_argument("-i", "--input", help="location directory to read from")
 parser.add_argument("-c", "--channel", help="channel to read from")
 parser.add_argument("-t", "--title", help="plot title")
 parser.add_argument("-d", "--description", help="description to show on plot")
-parser.add_option("-o", "--outname", dest="outname", default=None, type=str, help="Name of file that figure will be saved under.")
+parser.add_argument("-o", "--outname", dest="outname", default=None, type=str, help="Name of file that figure will be saved under.")
 args = parser.parse_args()
 
 dir = args.input + '/' + args.channel
@@ -38,12 +40,12 @@ bins, st0, sr, cfreq, num_fft = pickle.load(file_vars)
 file_vars.close()
 
 if args.title == None:
-    title = args.input.split('/')[-2]
+    title = args.input.split('/')[-1]
 else:
     title = args.title
 
 if args.description == None:
-    description = 'Freq Binning 4, Time Binning 2, 4-big Amp Binning'
+    description = 'Freq Binning 4, Time Binning 2, 4-bit Amp Binning'
 else:
     description = args.description
 
@@ -160,4 +162,4 @@ if args.outname:
 
 # save and show plot
 #matplotlib.pyplot.savefig(dir_plot)
-matplotlib.pyplot.show()
+# matplotlib.pyplot.show()
