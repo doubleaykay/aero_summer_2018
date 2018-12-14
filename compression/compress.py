@@ -433,6 +433,15 @@ freq = np.array(freq)
 freq.tofile(out_freq)
 sti_times.tofile(out_sti_times)
 
+# padding with zeros in frequency (uncomment if needed)
+# psd = psd.reshape([bins, -1])
+# print(psd.shape)
+# new = np.zeros([bins, 1024])
+# new[:, :(psd.shape[1])] = psd
+# psd = new
+# del new
+# num_fft = 2048
+
 # save vars for plotting later
 file_out_vars = open(out_vars, 'rw+')
 vars = [bins, st0, sr, cfreq, num_fft]
@@ -444,18 +453,18 @@ psd_freq = freq_scheme4(psd, args.reduce, bins, (num_fft/2))
 
 # TIME BINNING (TIME_SCHEME2)
 if ~args.reduce:
-    psd_time = time_scheme2_ne(psd_freq)
-else:
     psd_time = time_scheme2(psd_freq, bins, (num_fft/2))
+else:
+    psd_time = time_scheme2_ne(psd_freq)
 
 # LOG10
 psd_log10 = np.log10(psd_time)
 
 # 4-BIT AMPLITUDE BINNING
 if ~args.reduce:
-    psd_amp = amp_bin(psd_log10, 4, -4, 4)
-else:
     psd_amp = amp_bin(psd_log10[0], 4, -4, 4)
+else:
+    psd_amp = amp_bin(psd_log10, 4, -4, 4)
 
 # SAVE PSD_AMP TO BINARY
 write_bin(psd_amp).tofile(out_psd)
