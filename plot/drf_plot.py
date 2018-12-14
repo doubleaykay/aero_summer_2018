@@ -53,8 +53,8 @@ class DataPlotter(object):
 
         # Figure setup
 
-        self.f = matplotlib.pyplot.figure(figsize=(7, numpy.min(
-            [numpy.max([4, self.control.frames]), 7])), dpi=128)
+        #self.f = matplotlib.pyplot.figure(figsize=(7, numpy.min([numpy.max([4, self.control.frames]), 7])), dpi=128)
+        self.f = matplotlib.pyplot.figure(figsize=(9, 4.875), dpi=600)
 
         self.gridspec = matplotlib.gridspec.GridSpec(self.control.frames, 1)
 
@@ -244,8 +244,8 @@ class DataPlotter(object):
         timestamp = "%d-%02d-%02d %02d:%02d:%02d.%02d UT" % (srt_time[0], srt_time[
                                                              1], srt_time[2], srt_time[3], srt_time[4], srt_time[5], sub_second)
 
-        self.f.suptitle('%s %s %4.2f MHz (%s)' % (
-            self.control.title, timestamp, cfreq / 1E6, self.control.path), fontsize=10)
+        #self.f.suptitle('%s %s %4.2f MHz (%s)' % (self.control.title, timestamp, cfreq / 1E6, self.control.path), fontsize=10)
+        self.f.suptitle('%s %s' % (self.control.title, timestamp), fontsize=8)
 
         # ax.legend(fontsize=8)
         ax.set_xlabel('time (UTC)', fontsize=8)
