@@ -152,14 +152,12 @@ f.subplots_adjust(top=0.95, right=0.88)
 cax = f.add_axes([0.9, 0.12, 0.02, 0.80])
 f.colorbar(im, cax=cax)
 
-f.text(0.005, 0.005, description, size='x-large')
+#f.text(0.005, 0.005, description, size='x-large')
 
 if args.outname:
     fname, ext = os.path.splitext(args.outname)
     if ext == '':
         ext = '.png'
     matplotlib.pyplot.savefig(fname+ext, dpi=300)
-
-# save and show plot
-#matplotlib.pyplot.savefig(dir_plot)
-matplotlib.pyplot.show()
+else:
+    matplotlib.pyplot.show()
