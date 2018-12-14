@@ -191,15 +191,23 @@ class DataPlotter(object):
                 numpy.max(freq_axis) / 1e3,
             )
 
+            # pad with zeros in the frequency space if need be
+            # sti_psd_data = sti_psd_data[(self.control.num_fft/2):]
+            # new = numpy.full([1024, self.control.bins], -120-15, numpy.float)
+            # new[:(sti_psd_data.shape[0]), :] = sti_psd_data
+            # sti_psd_data = new
+            # del new
+            # self.control.num_fft = 2048
+
             # determine image color extent in log scale units
             Pss = sti_psd_data[numpy.nonzero(sti_psd_data)]
             vmin = numpy.real(numpy.percentile(Pss, 5))
             vmax = numpy.real(numpy.percentile(Pss, 95))
 
-            im = ax.imshow(sti_psd_data[(self.control.num_fft/2):], cmap='gray', origin='lower', extent=extent,
-                           interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
+            im = ax.imshow(sti_psd_data[(self.control.num_fft/2):], cmap='viridis', origin='lower', extent=extent,
+                          interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
 
-            ax.set_ylabel('f (Hz)', fontsize=8)
+            ax.set_ylabel('f (kHz)', fontsize=8)
 
             # plot dates
 
