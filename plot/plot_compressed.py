@@ -52,7 +52,7 @@ else:
 matplotlib.rc('axes', hold=False)
 
 # Figure setup
-f = matplotlib.pyplot.figure(figsize=(7, np.min([np.max([4, 1]), 7])), dpi=128)
+f = matplotlib.pyplot.figure(figsize=(9, 4.875), dpi=600)
 
 gridspec = matplotlib.gridspec.GridSpec(1, 1)
 
@@ -131,7 +131,7 @@ sub_second = int(round((start_time - int(start_time)) * 100))
 timestamp = "%d-%02d-%02d %02d:%02d:%02d.%02d UT" % (srt_time[0], srt_time[1], srt_time[2], srt_time[3], srt_time[4], srt_time[5], sub_second)
 
 # add and modify aspects of plot post-plotting
-f.suptitle('%s %s %4.2f MHz' % (title, timestamp, cfreq / 1E6), fontsize=10)
+f.suptitle('%s %s' % (title, timestamp), fontsize=8)
 
 ax.set_xlabel('time (UTC)', fontsize=8)
 
