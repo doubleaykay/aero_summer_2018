@@ -86,7 +86,7 @@ for p in np.arange(1):
     vmax = np.real(np.percentile(Pss, 95))
 
     # plot data
-    im = ax.imshow(sti_psd_data, cmap='gray', origin='lower', extent=extent, interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
+    im = ax.imshow(sti_psd_data, cmap='inferno', origin='lower', extent=extent, interpolation='nearest', vmin=vmin, vmax=vmax, aspect='auto')
 
     ax.set_ylabel('f (Hz)', fontsize=8)
 
@@ -162,4 +162,4 @@ if args.outname:
 
 # save and show plot
 #matplotlib.pyplot.savefig(dir_plot)
-# matplotlib.pyplot.show()
+matplotlib.pyplot.show()
